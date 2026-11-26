@@ -4,8 +4,8 @@
   "sender_title": "Founder",
   "sender_company": "Stellaspire",
   "sender_phone": "+91 7024766117",
-  "sender_website": "stellaspire.com",
-  "sender_linkedin": "linkedin.com/company/stellaspire",
+  "sender_website": "https://stellaspire.com",
+  "sender_linkedin": "https://www.linkedin.com/company/stellaspire/",
   "opt_out_line": "If this isn't relevant, reply \"no\" and I won't write again.",
   "send_mode": "draft",
   "paused": false,
@@ -45,5 +45,6 @@
   "alert_email": "nikita@stellaspire.com",
   "sending_domain": "stellaspire.in",
   "sending_address": "nikita_agrawal@stellaspire.in",
-  "linkedin_doc_url": ""
+  "linkedin_doc_url": "",
+  "sender_logo_url": "https://cdn.prod.website-files.com/66a5fdf6d0c2ac84ca88fe93/6886351f114ee66a92aad258_WhatsApp-Image-2025-05-07-at-14.24.03.jpeg"
 }

@@ -14,13 +14,14 @@ from sslib.email_check import check_email, check_linkedin
 from sslib.fit import fit
 from sslib.guard import check_contacts
 from sslib.health import health
+from sslib.hiresome import HiresomeError, hiresome
 from sslib.proof import facts, proof
 from sslib.roles import role_check
 from sslib.settings_override import load_settings, settings_check
 
 COMMANDS = {"today": today, "role-check": role_check, "check-contacts": check_contacts, "fit": fit, "proof": proof,
             "facts": facts, "check-email": check_email, "check-linkedin": check_linkedin, "compose": compose, "next-step": next_step,
-            "health": health, "apollo": apollo, "campaign": campaign,
+            "health": health, "apollo": apollo, "hiresome": hiresome, "campaign": campaign,
             "campaign-check": campaign_check, "settings-check": settings_check, "load-settings": load_settings}
 
 
@@ -33,7 +34,7 @@ def main(argv: list[str]) -> int:
         if not isinstance(inp, dict):
             raise ValueError("stdin must be one JSON object")
         out = COMMANDS[argv[1]](inp)
-    except ApolloError as exc:
+    except (ApolloError, HiresomeError) as exc:
         print(json.dumps({"error": str(exc)}))
         return 1
     except (ValueError, KeyError, TypeError) as exc:  # includes JSONDecodeError and missing keys

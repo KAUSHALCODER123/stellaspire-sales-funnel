@@ -50,3 +50,27 @@ def test_composed_text_without_signature_passes_check_email():
     unsigned = r["body"].split("\nFounder, Stellaspire")[0]
     assert check_email({"step": 1, "subject": SUBJECT, "body": unsigned, "facts": {**FACTS, "placement_proof": PROOF}})["ok"]
     assert json.dumps(r)  # serialisable
+
+
+def _compose_one(step=2):
+    return compose({"step": step, "body": FOLLOW if step == 2 else INTRO, "facts": FACTS})
+
+
+def test_html_body_has_the_live_signature_with_logo_links_and_title_under_the_name():
+    out = _compose_one()
+    page = out["body_html"]
+    assert "<br>Founder, Stellaspire<br><br>" in page                      # title sits directly under the sign-off name
+    assert '<img src="https://cdn.prod.website-files.com/' in page and 'height="56"' in page
+    assert '+91 7024766117 | <a href="https://stellaspire.com">stellaspire.com</a> | ' \
+           '<a href="https://www.linkedin.com/company/stellaspire/">LinkedIn</a>' in page
+    assert page.endswith("I won&#x27;t write again.</span>") or "write again.</span>" in page
+
+
+def test_html_body_escapes_the_email_text_and_keeps_line_breaks():
+    out = compose({"step": 2, "body": FOLLOW.replace("Nikita", "Nikita"), "facts": FACTS})
+    assert "<script" not in out["body_html"] and "\n" not in out["body_html"].split("<br>Founder")[0]
+    assert "<br><br>" in out["body_html"]
+
+
+def test_plain_body_shows_short_website_and_linkedin_labels():
+    assert "+91 7024766117 | stellaspire.com | linkedin.com/company/stellaspire" in _compose_one()["body"]

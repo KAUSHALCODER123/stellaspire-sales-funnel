@@ -37,11 +37,12 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" compose <<'JSON'
 {"step": 1, "subject": "SDR seat empty since April", "body": "<your checked text>", "facts": { ... }}
 JSON
 ```
-Compose inserts the proof sentence (step 1), the signature and the opt-out line, re-checks, and returns `body` (and `subject` for step 1). If it returns `error`, treat it like a failed check and count it as a try. Use its output text exactly; change nothing.
+Compose inserts the proof sentence (step 1), the signature and the opt-out line, re-checks, and returns `body` (plain text), `body_html` (the same email as HTML, with Stellaspire's signature: title under the name, logo, phone, website and LinkedIn links) and `subject` (step 1). If it returns `error`, treat it like a failed check and count it as a try. Use its output text exactly; change nothing.
 6. Deliver, by the effective `send_mode` (`${CLAUDE_PLUGIN_ROOT}/config/settings.json` plus this run's `load-settings` overrides):
    - `dry_run`: write nothing to Gmail. Put the final text in the report.
    - `draft`: create a Gmail draft with the Gmail connector.
    - `send`: send with the Gmail connector.
+   Use `body_html` as an HTML body whenever the connector accepts one (look for an HTML or content-type option on its draft and send tools), so the logo and links show. If the connector only takes plain text, use `body` and say so once in the report. Never type or edit signature text yourself.
    Step 1 starts a new thread to the contact's verified address, using compose's subject. Steps 2 to 5 reply in the same thread (reply to the latest message, keep the thread, no new subject).
 7. Label the thread `SS/Step-N` (N = this step; create the label if missing). In `dry_run` do not label.
 

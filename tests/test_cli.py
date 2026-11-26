@@ -44,7 +44,7 @@ def test_unknown_command_exits_2():
 
 def test_every_command_is_dispatched():
     assert set(ss.COMMANDS) == {"today", "role-check", "check-contacts", "fit", "proof", "facts", "check-email",
-                                "check-linkedin", "compose", "next-step", "health", "apollo", "campaign",
+                                "check-linkedin", "compose", "next-step", "health", "apollo", "hiresome", "campaign",
                                 "campaign-check", "settings-check", "load-settings"}
 
 

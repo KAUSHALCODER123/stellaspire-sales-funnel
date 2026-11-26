@@ -18,7 +18,7 @@ Every hard rule (limits, who may be emailed, how old a role may be, what the ema
 ## One-time setup
 1. **Domain and mailbox.** Buy the `.in` domain. Set up Google Workspace with one sending mailbox on it. Add the DNS records Google gives you: SPF, DKIM and DMARC. Never send from the `.com` domain.
 2. **Warm up the mailbox** with normal mail for a week before the plugin sends anything.
-3. **Connect the apps** in claude.ai (Settings, Connectors): Gmail, signed in as the `.in` mailbox, and Hiresome. Optional but recommended: Firecrawl, which makes the research agents better at reading careers pages and job boards. It uses Firecrawl credits. Claude Docs is needed for the LinkedIn notes doc. In each scheduled task's Connectors tab, keep only Gmail, Hiresome, Claude Docs and Firecrawl.
+3. **Connect the apps** in claude.ai (Settings, Connectors): Gmail, signed in as the `.in` mailbox. Optional but recommended: Firecrawl, which makes the research agents better at reading careers pages and job boards. It uses Firecrawl credits. Claude Docs is needed for the LinkedIn notes doc. In each scheduled task's Connectors tab, keep only Gmail, Claude Docs and Firecrawl. Hiresome and Apollo are not connectors; they use the keys in step 6.
 4. **Add the plugin** to the Claude account at claude.ai/customize/plugins, pointing at this repository. Plugins added at account level load in scheduled cloud runs.
 5. **Settings.** In `config/settings.json` set `warmup_start_date` (the first day the plugin may send), the sender details and `alert_email` (where reports and alerts go), and leave `send_mode` as `draft`. After that, you change `paused`, `send_mode`, `alert_email`, `linkedin_doc_url`, `mailbox_daily_cap`, `target_cities`, `exclude_domains`, `when_no_campaign` and `max_companies_researched_per_run` by chatting (see Settings below), never by editing files. The scheduled runs never change settings.
 6. **Create two scheduled tasks** in Claude (check in the routine settings for the current screens and names):
@@ -27,10 +27,10 @@ Every hard rule (limits, who may be emailed, how old a role may be, what the ema
    Minute 7 is deliberate: runs set for exactly the top of the hour start late.
    For both tasks:
    - Network: full network access (the research needs the open web).
-   - Apollo key: add it as a network secret for the host `api.apollo.io`. The proxy adds it to requests; the scripts never see it.
+   - Keys: in the environment's Environment variables box, paste the contents of `stellaspire-outreach.env` (`APOLLO_API_KEY` and `HIRESOME_TOKEN`). The scripts read them directly. Keep that file private and out of GitHub.
    - Setup script: `pip install holidays || true`
-   - Connectors: keep only Gmail (the `.in` mailbox) and Hiresome.
-7. **Run `/stellaspire-outreach:setup-check` once by hand.** It checks DNS, both connectors, the Apollo key, the labels (it creates missing ones) and sends a test email to `alert_email`. A scheduled run that hits an approval prompt stops, so if the test email needs approval, fix that first.
+   - Connectors: keep only Gmail (the `.in` mailbox), Claude Docs and, if used, Firecrawl.
+7. **Run `/stellaspire-outreach:setup-check` once by hand.** It checks DNS, Gmail, the Hiresome and Apollo keys, the labels (it creates missing ones) and sends a test email to `alert_email`. A scheduled run that hits an approval prompt stops, so if the test email needs approval, fix that first.
 8. **Do one manual `/stellaspire-outreach:daily-run`** while `send_mode` is `dry_run` to see a report, then switch to `draft`.
 
 ## Your daily routine
@@ -97,7 +97,7 @@ Every Monday the plugin reads the last 4 weeks of threads and writes up to 5 sho
 Bigger changes (new cities or roles, limits, send mode, rules) are made by asking Claude in a chat that has the plugin repository open. The change is pushed to the repository, and the plugin is then updated on the Claude account. Check how your account updates the plugin.
 
 ## If something looks wrong
-Run `/stellaspire-outreach:status`, then `/stellaspire-outreach:setup-check`. Most failures are a disconnected Gmail or Hiresome connector, or an approval prompt that stops a scheduled run.
+Run `/stellaspire-outreach:status`, then `/stellaspire-outreach:setup-check`. Most failures are a disconnected Gmail connector, a missing or expired Apollo or Hiresome key, or an approval prompt that stops a scheduled run.
 
 ## LinkedIn notes
 Open the LinkedIn doc (link in `linkedin_doc_url`, and in each report). Today's notes are at the top. For each one, open the profile, choose Connect, then "Add a note", and paste. Notes are at most 300 characters, which is LinkedIn's limit. Free LinkedIn accounts can send only a few personal notes a month, so send the top ones first, or send the invite without a note.
