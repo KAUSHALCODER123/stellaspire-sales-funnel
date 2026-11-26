@@ -11,6 +11,7 @@ import urllib.request
 from pathlib import Path
 
 from .calendar_ist import now_ist
+from .netblock import blocked_host
 
 BASE = "https://api.apollo.io/api/v1"
 ORG_FIELDS = ("id", "name", "primary_domain", "website_url", "industry", "estimated_num_employees", "city", "country",
@@ -34,7 +35,7 @@ def _request(method: str, path: str, body: dict | None = None, params: dict | No
         with urllib.request.urlopen(req, timeout=30) as resp:
             data = json.load(resp)
     except urllib.error.HTTPError as exc:
-        raise ApolloError("apollo_auth" if exc.code in (401, 403) else f"apollo_http_{exc.code}") from exc
+        raise ApolloError(blocked_host(exc, "api.apollo.io") or ("apollo_auth" if exc.code in (401, 403) else f"apollo_http_{exc.code}")) from exc
     except (urllib.error.URLError, TimeoutError, ValueError) as exc:
         raise ApolloError("apollo_unreachable") from exc
     if not isinstance(data, dict):

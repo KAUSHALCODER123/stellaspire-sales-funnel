@@ -12,7 +12,7 @@ Run every check, do not stop at the first failure, and print a table: check, PAS
    - DMARC: `nslookup -type=txt _dmarc.<domain>`, a record starting `v=DMARC1`. WARN if `p=none` after the first month.
    - DKIM: `nslookup -type=txt google._domainkey.<domain>` (also try the selector Google Workspace shows in Admin). FAIL if no `v=DKIM1` record.
 3. **Gmail connector** reachable, and it is the `.in` mailbox: look up the connected profile or search for one message. FAIL if it is any other mailbox, and in particular the `.com` one.
-4. **Hiresome key**: `ss.py hiresome` with `{"action": "ping"}`. PASS if `ok` is true; `hiresome_token_missing` means `HIRESOME_TOKEN` isn't in the environment variables, and `hiresome_auth` means the token is wrong or expired.
+4. **Hiresome key**: `ss.py hiresome` with `{"action": "ping"}`. PASS if `ok` is true; `hiresome_token_missing` means `HIRESOME_TOKEN` isn't in the environment variables, and `hiresome_auth` means the token is wrong or expired. `network_blocked:<host>` means this session's network blocks the site, not that the key is wrong: set the environment's Network access to Full (or add `api.apollo.io` and `stellaspire.hiresome.ai` to its allowed domains), and run the check from a session that uses that environment.
 5. **Apollo key**: `ss.py apollo` with `{"action": "search_orgs", "keywords": ["software"], "locations": ["India"], "headcount": [50, 500], "per_page": 1}`. PASS if it returns results. `apollo_auth` means `APOLLO_API_KEY` is missing from the environment variables or is wrong. Never print the key.
 6. **Scripts**: 
 ```

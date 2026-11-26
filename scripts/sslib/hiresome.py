@@ -8,6 +8,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+from .netblock import blocked_host
+
 DEFAULT_BASE = "https://stellaspire.hiresome.ai/opi/v1"
 PAGE = 50
 
@@ -27,7 +29,7 @@ def _get(path: str, params: dict | None = None) -> dict:
         with urllib.request.urlopen(req, timeout=30) as resp:
             data = json.load(resp)
     except urllib.error.HTTPError as exc:
-        raise HiresomeError("hiresome_auth" if exc.code in (401, 403) else f"hiresome_http_{exc.code}") from exc
+        raise HiresomeError(blocked_host(exc, urllib.parse.urlsplit(base).hostname or "hiresome") or ("hiresome_auth" if exc.code in (401, 403) else f"hiresome_http_{exc.code}")) from exc
     except (urllib.error.URLError, TimeoutError, ValueError) as exc:
         raise HiresomeError("hiresome_unreachable") from exc
     if not isinstance(data, dict):

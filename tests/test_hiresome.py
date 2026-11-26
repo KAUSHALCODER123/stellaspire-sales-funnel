@@ -49,3 +49,13 @@ def test_missing_token_and_auth_errors(monkeypatch):
 def test_unknown_action_is_a_value_error():
     with pytest.raises(ValueError):
         hs.hiresome({"action": "nope"})
+
+
+def test_a_sandbox_block_is_reported_as_network_blocked_not_a_bad_key(monkeypatch):
+    monkeypatch.setenv("HIRESOME_TOKEN", "k")
+
+    def refused(req, timeout=0):
+        raise hs.urllib.error.HTTPError(req.full_url, 403, "Forbidden", {}, io.BytesIO(b"host not allowed for this session"))
+    monkeypatch.setattr(hs.urllib.request, "urlopen", refused)
+    with pytest.raises(hs.HiresomeError, match="network_blocked:stellaspire.hiresome.ai"):
+        hs.hiresome({"action": "ping"})

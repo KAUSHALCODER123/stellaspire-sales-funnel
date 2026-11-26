@@ -188,3 +188,12 @@ def test_apollo_usage_through_the_cli(monkeypatch, capsys):
     monkeypatch.setattr(ss.sys, "stdin", io.StringIO(json.dumps({"action": "usage"})))
     assert ss.main(["ss.py", "apollo"]) == 0
     assert json.loads(capsys.readouterr().out)["credits_used_this_run"] == 0
+
+
+def test_apollo_sandbox_block_is_reported_as_network_blocked(monkeypatch):
+    import io
+    def refused(req, timeout=0):
+        raise apollo_mod.urllib.error.HTTPError(req.full_url, 403, "Forbidden", {}, io.BytesIO(b"HTTP 403, host not allowed for this session"))
+    monkeypatch.setattr(apollo_mod.urllib.request, "urlopen", refused)
+    with pytest.raises(apollo_mod.ApolloError, match="network_blocked:api.apollo.io"):
+        apollo_mod.apollo({"action": "search_orgs", "keywords": [], "locations": [], "headcount": [1, 2]})
