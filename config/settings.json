@@ -1,0 +1,49 @@
+{
+  "sender_name": "Nikita Agrawal",
+  "sender_first_name": "Nikita",
+  "sender_title": "Founder",
+  "sender_company": "Stellaspire",
+  "sender_phone": "+91 7024766117",
+  "sender_website": "stellaspire.com",
+  "sender_linkedin": "linkedin.com/company/stellaspire",
+  "opt_out_line": "If this isn't relevant, reply \"no\" and I won't write again.",
+  "send_mode": "draft",
+  "paused": false,
+  "when_no_campaign": "wait",
+  "warmup_start_date": "2026-12-03",
+  "mailbox_daily_cap": 25,
+  "max_companies_researched_per_run": 15,
+  "companies_per_new_email": 3,
+  "allowed_countries": [
+    "india"
+  ],
+  "exclude_domains": [],
+  "target_families": [
+    "hardware_robotics",
+    "bfsi",
+    "real_estate",
+    "healthcare",
+    "finance",
+    "hr",
+    "design",
+    "tech_ai_data",
+    "growth",
+    "operations"
+  ],
+  "target_cities": [
+    "Bengaluru",
+    "Hyderabad",
+    "Pune",
+    "Mumbai",
+    "New Delhi",
+    "Indore",
+    "Gurugram",
+    "Kolkata",
+    "Noida"
+  ],
+  "timezone": "Asia/Kolkata",
+  "alert_email": "nikita@stellaspire.com",
+  "sending_domain": "stellaspire.in",
+  "sending_address": "nikita_agrawal@stellaspire.in",
+  "linkedin_doc_url": ""
+}

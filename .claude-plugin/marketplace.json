@@ -1,0 +1,14 @@
+{
+  "name": "stellaspire",
+  "owner": {
+    "name": "Stellaspire"
+  },
+  "plugins": [
+    {
+      "name": "stellaspire-outreach",
+      "source": "./",
+      "description": "Daily cold-email funnel for Stellaspire: lead finding, research, email drafting and reply sorting, with every hard rule enforced by a script."
+    }
+  ],
+  "description": "Stellaspire's private plugins."
+}

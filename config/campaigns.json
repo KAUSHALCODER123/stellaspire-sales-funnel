@@ -1,0 +1,19 @@
+{
+  "campaigns": [
+    {
+      "slug": "example-bengaluru-tech-hiring",
+      "name": "Example: Bengaluru tech and data hiring",
+      "status": "draft",
+      "families": ["tech_ai_data"],
+      "cities": ["Bengaluru"],
+      "industries": ["saas", "fintech"],
+      "headcount": [50, 500],
+      "seniority": ["Head of Talent Acquisition", "CTO", "VP Engineering"],
+      "target_contacts": 100,
+      "start_date": "2026-12-01",
+      "end_date": "2027-01-31",
+      "angle": "Offer to shortlist for the open role from our recent placements in the same family.",
+      "priority": 1
+    }
+  ]
+}
