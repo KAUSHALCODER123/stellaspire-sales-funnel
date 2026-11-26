@@ -27,7 +27,7 @@ Every hard rule (limits, who may be emailed, how old a role may be, what the ema
    Minute 7 is deliberate: runs set for exactly the top of the hour start late.
    For both tasks:
    - Network: full network access (the research needs the open web).
-   - Keys: in the environment's Environment variables box, paste the contents of `stellaspire-outreach.env` (`APOLLO_API_KEY` and `HIRESOME_TOKEN`). The scripts read them directly. Keep that file private and out of GitHub.
+   - Keys: in the environment's Environment variables box, paste the contents of `stellaspire-outreach.env` (`APOLLO_API_KEY` and `HIRESOME_TOKEN`). The scripts read them directly. Keep that file private and out of GitHub. Apollo can also be connected as a Claude connector: use it as a fallback in chat sessions only, because it asks for approval before each credit-spending call and a scheduled run has nobody to answer.
    - Setup script: `pip install holidays || true`
    - Connectors: keep only Gmail (the `.in` mailbox), Claude Docs and, if used, Firecrawl.
 7. **Run `/stellaspire-outreach:setup-check` once by hand.** It checks DNS, Gmail, the Hiresome and Apollo keys, the labels (it creates missing ones) and sends a test email to `alert_email`. A scheduled run that hits an approval prompt stops, so if the test email needs approval, fix that first.

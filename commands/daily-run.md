@@ -32,6 +32,22 @@ Use the `effective` settings from step 0a (`${CLAUDE_PLUGIN_ROOT}/config/setting
 ## Campaigns are decided by a person
 New outreach is targeted by campaigns. Nikita alone starts, changes, pauses and ends campaigns, by chatting with `/stellaspire-outreach:campaign`. Each campaign is a note-to-self in the `.in` mailbox, subject `SS Campaign <slug>`, label `SS/Campaigns`, body = the campaign JSON; the newest note per slug wins, and `config/campaigns.json` is only a read-only seed list. This run (and `reply-check`) only READS `SS Campaign` notes. You never create, change, activate, pause or delete a campaign or its notes, and never choose targeting yourself. Suggested campaigns are only text in a report or email. A campaign's `angle` is optional guidance for the email writer; it never overrides copy rules or `check-email`. A note whose body is not valid JSON is skipped and listed under Needs Nikita, with its slug.
 
+## Apollo access: the key first, the connector as a fallback
+Every Apollo call below goes through `ss.py apollo` (it uses `APOLLO_API_KEY` and needs the open web). That is the only path for scheduled runs.
+
+If `ss.py apollo` reports `network_blocked:api.apollo.io` or `apollo_auth`, and a person is in this chat (a manual run, not a scheduled one), use the Apollo connector tools instead:
+
+| `ss.py apollo` action | Connector tool | Notes |
+|---|---|---|
+| `search_orgs` | `apollo_mixed_companies_search` | `q_organization_keyword_tags`, `organization_locations`, `organization_num_employees_ranges` (`["50,500"]`), `per_page`. From `organizations` use `id`; from `accounts` use `organization_id`. 1 credit per search that returns results. |
+| `job_postings` | `apollo_organizations_job_postings` | `id` = the Apollo organization id. 1 credit per call. |
+| `search_people` | `apollo_mixed_people_api_search` | `organization_ids`, `person_titles`, `per_page`. Returns no emails. |
+| `reveal` | `apollo_people_bulk_match` | `details: [{"id": ...}]`, at most 10 per call. 1 credit per match. |
+| `match_person` | `apollo_people_match` | `first_name`, `last_name`, `domain`, `linkedin_url`. 1 credit per match. |
+| `usage` | `apollo_usage_stats_credit_usage_stats` | Free. |
+
+The connector asks the user to approve credit spending before it runs. So before the first spending call, tell the user the planned total ("up to N credits") and wait for a clear yes; then work in batches without asking again, as the tool allows. Never use the connector in a scheduled run: nobody can answer, so stop and report the failed key or blocked network instead. Keep every other rule (verified email on the company domain, `check-contacts`, the caps) exactly as it is.
+
 ## 0. Run lock
 Unless `send_mode` is `dry_run`, create a note-to-self (from the `.in` mailbox to itself) with subject `SS Run lock` right now, so `reply-check` knows a daily run is in progress. At the very end of the run (after the report is sent, or when you stop early for any reason) delete that note, or if deleting is not possible label it `SS/Done`. A lock note older than 90 minutes is stale: ignore it and delete it.
 
