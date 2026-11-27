@@ -19,7 +19,7 @@ Every hard rule (limits, who may be emailed, how old a role may be, what the ema
 1. **Domain and mailbox.** Buy the `.in` domain. Set up Google Workspace with one sending mailbox on it. Add the DNS records Google gives you: SPF, DKIM and DMARC. Never send from the `.com` domain.
 2. **Warm up the mailbox** with normal mail for a week before the plugin sends anything.
 3. **Connect the apps** in claude.ai (Settings, Connectors): Gmail, signed in as the `.in` mailbox. Optional but recommended: Firecrawl, which makes the research agents better at reading careers pages and job boards. It uses Firecrawl credits. Claude Docs is needed for the LinkedIn notes doc. In each scheduled task's Connectors tab, keep only Gmail, Claude Docs and Firecrawl. Hiresome and Apollo are not connectors; they use the keys in step 6.
-4. **Plugin upload (optional).** The scheduled tasks and the Code-section commands read everything from this GitHub repository, so a push is live on the next run. In a session on this repository the commands are `/ss-status`, `/ss-campaign`, `/ss-settings` and so on (the `ss-` prefix keeps them from clashing with Claude's own `/status` and `/settings`). Uploading the zip as an account plugin is not needed, and Claude may keep serving an older uploaded copy; the repository copy always wins.
+4. **Plugin upload (optional).** The scheduled tasks and the Code-section commands read everything from this GitHub repository, so a push is live on the next run. In a session on this repository you just ask in plain English ("how is the funnel doing?", "pause everything", "start a campaign for sales roles in Pune"): `CLAUDE.md` tells Claude which file in `commands/` to follow. Short slash commands do not load in these sessions, and Claude's own `/status` and `/settings` are different things. Uploading the zip as an account plugin is not needed, and Claude may keep serving an older uploaded copy; the repository copy always wins.
 5. **Settings.** In `config/settings.json` set `warmup_start_date` (the first day the plugin may send), the sender details and `alert_email` (where reports and alerts go), and leave `send_mode` as `draft`. After that, you change `paused`, `send_mode`, `alert_email`, `linkedin_doc_url`, `mailbox_daily_cap`, `target_cities`, `exclude_domains`, `when_no_campaign` and `max_companies_researched_per_run` by chatting (see Settings below), never by editing files. The scheduled runs never change settings.
 6. **Create two scheduled tasks** in Claude (check in the routine settings for the current screens and names):
    - Daily run: instructions `Read commands/daily-run.md in this repository and follow it exactly.`, schedule `CRON_TZ=Asia/Kolkata 7 7 * * 1-5` (07:07 IST, Monday to Friday).
@@ -30,8 +30,8 @@ Every hard rule (limits, who may be emailed, how old a role may be, what the ema
    - Keys: in the environment's Environment variables box, paste the contents of `stellaspire-outreach.env` (`APOLLO_API_KEY` and `HIRESOME_TOKEN`). The scripts read them directly. Keep that file private and out of GitHub. Apollo can also be connected as a Claude connector: use it as a fallback in chat sessions only, because it asks for approval before each credit-spending call and a scheduled run has nobody to answer.
    - Setup script: `pip install holidays || true`
    - Connectors: keep only Gmail (the `.in` mailbox), Claude Docs and, if used, Firecrawl.
-7. **Run `/ss-setup-check` once by hand.** It checks DNS, Gmail, the Hiresome and Apollo keys, the labels (it creates missing ones) and sends a test email to `alert_email`. A scheduled run that hits an approval prompt stops, so if the test email needs approval, fix that first.
-8. **Do one manual `/ss-daily-run`** while `send_mode` is `dry_run` to see a report, then switch to `draft`.
+7. Ask Claude to **check the setup once by hand.** It checks DNS, Gmail, the Hiresome and Apollo keys, the labels (it creates missing ones) and sends a test email to `alert_email`. A scheduled run that hits an approval prompt stops, so if the test email needs approval, fix that first.
+8. **Ask Claude to run the daily outreach once** while `send_mode` is `dry_run` to see a report, then switch to `draft`.
 
 ## Your daily routine
 - Gmail does not let Claude label a draft, so a new draft has no labels. After you send it, the next run labels that thread (and the follow-ups) by itself. Don't send drafts you haven't read, and don't forward or move them.
@@ -59,7 +59,7 @@ They feed the Monday funnel numbers. A thread with either label gets no more fol
 A campaign is a targeted batch of outreach: which role families, cities, sectors and company sizes to go after, how many contacts to reach, and between which dates. Every thread of a campaign also carries the label `SS/C-<campaign slug>`, which is how its results are counted.
 
 You start and change campaigns by chatting, not by editing files. Open Claude and type, for example:
-- `/ss-campaign start sales roles in Pune, 50-200 people, 40 contacts`
+- "Start a campaign for sales roles in Pune, 50-200 people, 40 contacts"
 - `pause the Pune campaign`
 - `how is the Pune campaign doing?`
 
@@ -67,7 +67,7 @@ Claude asks short questions for anything missing, shows a plain summary, and ask
 
 With no active campaign, `when_no_campaign` in `config/settings.json` decides: `"wait"` (the default) writes no new first emails while replies and follow-ups carry on; `"default"` falls back to `target_families` and `target_cities`. The daily new-email limit is split across active campaigns by `priority`, never beyond a campaign's remaining target.
 
-A campaign ends when it reaches `target_contacts` or passes its `end_date`, or when you pause or end it in chat. Once all its follow-ups have finished, you get one "Campaign complete" email with the results, what worked, and one to three suggested next campaigns. They are only suggestions: to start one, type `/ss-campaign start <name>` or just describe it.
+A campaign ends when it reaches `target_contacts` or passes its `end_date`, or when you pause or end it in chat. Once all its follow-ups have finished, you get one "Campaign complete" email with the results, what worked, and one to three suggested next campaigns. They are only suggestions: to start one, say so, for example "start the <name> campaign".
 
 Targeting uses company and role traits only (role family, city, sector, company size, buyer job title), never personal traits of a person.
 
@@ -75,25 +75,25 @@ Targeting uses company and role traits only (role family, city, sector, company 
 The plugin starts with the leads carried over from the old funnel: people with a verified email and a role posted in the last 30 days (14 days if only Apollo lists it). They sit in `config/imported-leads.json` and run as the campaign **existing-leads**, which ends when all of them are contacted or on 31 Dec. The runs email the freshest roles first, within the warm-up limit. Anyone the old funnel already emailed is on the blocklist (`config/already-contacted.csv`). To refresh both from the old database, run `python tools/export_leads.py` (it needs access to the old server).
 
 ## Commands
-- `/ss-status`: where things stand today.
-- `/ss-do-not-contact <email or domain>`: never contact them again.
-- `/ss-weekly-report`: funnel counts by role and city.
-- `/ss-setup-check`: run after any change to the setup.
+- "How is the funnel doing?": where things stand today.
+- "Never contact <email or domain> again".
+- "Show the weekly results": funnel counts by role and city.
+- "Check the setup": run after any change to the setup.
 
 ## Settings
 You change settings by chatting, not by editing files or asking for a new plugin file. Examples:
-- `/ss-settings pause everything`
-- `/ss-settings send alerts to name@example.com`
-- `/ss-settings set the LinkedIn doc to <link>`
-- `/ss-settings show my settings`
+- "Pause everything"
+- "Send alerts to name@example.com`
+- "Set the LinkedIn doc to <link>"
+- "Show my settings"
 
 Claude shows the change before and after and saves only after your yes. Each change is a note to the mailbox itself (subject `SS Settings`, label `SS/Settings`; the newest note wins) holding only the values you changed. The warm-up start date, sending address, opt-out line and sender details are not changeable this way; they stay in the plugin file. `daily-run` and `reply-check` load the newest note first, only read it, and fall back to the plugin defaults (and tell you) if it is invalid.
 
 ## How to pause
-Open Claude and type `/ss-settings pause everything` (and `resume` to start again). The run will report that it is paused and write nothing. The plugin also pauses itself if the bounce rate goes above 3% (with at least 20 sends in 14 days) or anyone marks an email as spam. Fix the cause first, then un-pause.
+Open Claude and say "pause everything" (and `resume` to start again). The run will report that it is paused and write nothing. The plugin also pauses itself if the bounce rate goes above 3% (with at least 20 sends in 14 days) or anyone marks an email as spam. Fix the cause first, then un-pause.
 
 ## From draft to send mode
-Start in `draft` mode: the plugin creates Gmail drafts and you send them. When you have read a couple of weeks of drafts and are happy, and setup-check shows the test email sends without approval, type `/ss-settings switch to automatic sending`. Claude warns that emails then go out without your review, and you must reply exactly "yes, send automatically". Daily limits still apply: 5 a day in the first week, then 10, 15, and 20 from week four, never above the mailbox cap. `dry_run` writes nothing to Gmail and only shows what it would do.
+Start in `draft` mode: the plugin creates Gmail drafts and you send them. When you have read a couple of weeks of drafts and are happy, and setup-check shows the test email sends without approval, say "switch to automatic sending". Claude warns that emails then go out without your review, and you must reply exactly "yes, send automatically". Daily limits still apply: 5 a day in the first week, then 10, 15, and 20 from week four, never above the mailbox cap. `dry_run` writes nothing to Gmail and only shows what it would do.
 
 ## Improving it
 Every Monday the plugin reads the last 4 weeks of threads and writes up to 5 short lessons with their numbers (for example which subject style got more replies). Groups with fewer than 10 sends are marked "too early to tell". The lessons are saved as a note in the mailbox labelled `SS/Lessons`, and the next runs use the newest one to guide style and targeting. They can never override the limits, the email rules or the safety rules. The lessons and a "Suggested changes" list come in your Monday email.
@@ -101,11 +101,11 @@ Every Monday the plugin reads the last 4 weeks of threads and writes up to 5 sho
 Bigger changes (new cities or roles, limits, send mode, rules) are made by asking Claude in a chat that has the plugin repository open. The change is pushed to the repository, and the plugin is then updated on the Claude account. Check how your account updates the plugin.
 
 ## If something looks wrong
-Run `/ss-status`, then `/ss-setup-check`. Most failures are a disconnected Gmail connector, a missing or expired Apollo or Hiresome key, or an approval prompt that stops a scheduled run.
+Ask Claude for the status, then to check the setup. Most failures are a disconnected Gmail connector, a missing or expired Apollo or Hiresome key, or an approval prompt that stops a scheduled run.
 
 ## LinkedIn notes
 The daily run writes a short connection note for each person it emails and adds a row to the LinkedIn notes doc (link in `linkedin_doc_url`, and in each report): `Date | Name | Title | Company | Profile link | Note | Status`, with Status `ready`.
 
-To get the notes onto LinkedIn, open Claude with the Claude in Chrome extension turned on, in the Chrome where Nikita is signed in to LinkedIn, and type `/ss-linkedin-draft`. Claude opens up to 5 profiles, each in its own tab, clicks Connect, then "Add a note", and types the note. It stops there. Nikita reads each tab and presses Send herself. Claude then marks the rows `drafted`, and `sent` once she says so.
+To get the notes onto LinkedIn, open Claude with the Claude in Chrome extension turned on, in the Chrome where Nikita is signed in to LinkedIn, and say "draft the LinkedIn notes". Claude opens up to 5 profiles, each in its own tab, clicks Connect, then "Add a note", and types the note. It stops there. Nikita reads each tab and presses Send herself. Claude then marks the rows `drafted`, and `sent` once she says so.
 
 LinkedIn does not keep an unsent note, so a draft is an open tab. If a tab is closed first, tell Claude and the row goes back to `ready`. Free LinkedIn accounts can send only a few personal notes a month; if LinkedIn says the limit is reached, Claude stops and tells you. Scheduled runs never touch LinkedIn, and Claude never presses Send. LinkedIn restricts accounts that do a lot of automated activity, so keep to a few profiles a day.

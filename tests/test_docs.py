@@ -17,7 +17,12 @@ def test_every_script_call_names_a_real_command():
     assert used and used <= set(ss.COMMANDS), used - set(ss.COMMANDS)
 
 
-def test_every_command_has_a_project_level_wrapper_pointing_at_it():
-    for f in (ROOT / "commands").glob("*.md"):
-        wrapper = (ROOT / ".claude" / "commands" / f"ss-{f.name}").read_text(encoding="utf-8")
-        assert f"commands/{f.stem}.md" in wrapper and "$ARGUMENTS" in wrapper
+def test_claude_md_points_at_every_command_file():
+    guide = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    missing = [f.name for f in (ROOT / "commands").glob("*.md") if f"commands/{f.name}" not in guide]
+    assert missing == []
+
+
+def test_no_instruction_tells_anyone_to_type_a_slash_command_that_does_not_load():
+    text = " ".join(f.read_text(encoding="utf-8") for f in [*DOCS, ROOT / "README.md"])
+    assert "/ss-" not in text and "/stellaspire-outreach:" not in text

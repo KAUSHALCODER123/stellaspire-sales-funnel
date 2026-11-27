@@ -1,6 +1,6 @@
 {
   "name": "stellaspire-outreach",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Daily cold-email funnel for Stellaspire: finds companies hiring in India, researches them, writes emails under strict copy rules, sorts replies. Gmail labels are the only state.",
   "author": {
     "name": "Stellaspire"
