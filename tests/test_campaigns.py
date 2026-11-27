@@ -24,9 +24,11 @@ def run(counts=None, new_cap=10, now=NOW):
     return campaign({"counts": counts or {}, "new_cap": new_cap, "now": now})
 
 
-def test_shipped_example_is_draft_and_inert():
-    out = run()
-    assert out["active"] == [] and out["completed"] == [] and out["waiting_for_campaign"] is True
+def test_shipped_campaigns_are_the_inert_example_and_the_imported_existing_leads_one():
+    out = run(now="2026-11-30T09:00:00+05:30")
+    assert [(c["slug"], c["source"]) for c in out["active"]] == [("existing-leads", "imported")]
+    assert out["completed"] == [] and out["waiting_for_campaign"] is False
+    assert not any(c["slug"].startswith("example-") for c in out["active"])  # the example stays a draft
 
 
 def test_draft_ignored(setup):
@@ -197,3 +199,20 @@ def test_check_duplicate_slug_unless_update():
 def test_check_bad_slug_and_status():
     assert not check(good(slug="Pune Sales"))["ok"]
     assert not check(good(status="live"))["ok"]
+
+
+def test_imported_campaign_reports_its_source_and_needs_no_targeting(setup):
+    setup({"slug": "existing-leads", "name": "Existing", "status": "active", "source": "imported",
+           "target_contacts": 31, "start_date": "2026-11-27"})
+    out = run(new_cap=5)
+    assert [(c["slug"], c["source"], c["quota_today"]) for c in out["active"]] == [("existing-leads", "imported", 5)]
+    assert out["waiting_for_campaign"] is False
+
+
+def test_unknown_source_is_rejected_and_chat_cannot_create_imported_campaigns(setup):
+    from sslib.campaigns import campaign_check
+    setup(camp("bad", source="scraped"))
+    with pytest.raises(ValueError, match="source must be one of"):
+        run()
+    r = campaign_check({"campaign": camp("x", source="imported"), "existing_slugs": [], "now": NOW})
+    assert not r["ok"] and any("imported campaigns come with the plugin file" in p for p in r["problems"])

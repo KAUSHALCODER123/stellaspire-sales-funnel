@@ -12,6 +12,7 @@ from .config import config_dir, settings
 from .roles import FAMILIES
 
 STATUSES = ("draft", "active", "paused", "done")
+SOURCES = ("search", "imported")  # "imported" campaigns draw on config/imported-leads.json instead of searching
 WHEN_NO_CAMPAIGN = ("wait", "default")
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 COUNT_KEYS = ("contacted", "active_threads", "replied", "interested", "meeting", "won", "bounced")
@@ -35,6 +36,8 @@ def _validate(c) -> None:
         raise ValueError(f"campaign slug must be kebab-case: {c['slug']}")
     if c["status"] not in STATUSES:
         raise ValueError(f"campaign {c['slug']}: status must be one of {STATUSES}")
+    if c.get("source", "search") not in SOURCES:
+        raise ValueError(f"campaign {c['slug']}: source must be one of {SOURCES}")
     t = c["target_contacts"]
     if not isinstance(t, int) or isinstance(t, bool) or t < 1:
         raise ValueError(f"campaign {c['slug']}: target_contacts must be a positive integer")
@@ -88,6 +91,8 @@ def campaign_check(inp: dict) -> dict:
         problems.append(f"slug {slug} is already used; pick another, or confirm this is a change to that campaign")
     if n["status"] not in STATUSES:
         problems.append(f"status must be one of {list(STATUSES)}")
+    if n.get("source", "search") != "search":
+        problems.append("source must be search: imported campaigns come with the plugin file")
     fam = n.get("families")
     valid = ", ".join(f"{k} ({v.label})" for k, v in FAMILIES.items())
     if not isinstance(fam, list) or not fam or not all(isinstance(f, str) for f in fam):
@@ -159,7 +164,7 @@ def campaign(inp: dict) -> dict:
         out.append({"slug": c["slug"], "name": c["name"], "families": c.get("families", []),
                     "cities": c.get("cities", []), "industries": c.get("industries", []),
                     "headcount": c.get("headcount"), "seniority": c.get("seniority", []),
-                    "angle": c.get("angle"), "remaining": remaining, "quota_today": quota})
+                    "angle": c.get("angle"), "source": c.get("source", "search"), "remaining": remaining, "quota_today": quota})
     none_active = not out
     return {"active": out, "completed": completed,
             "default_targeting": none_active and mode == "default",

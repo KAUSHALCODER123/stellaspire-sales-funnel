@@ -70,6 +70,9 @@ A campaign ends when it reaches `target_contacts` or passes its `end_date`, or w
 
 Targeting uses company and role traits only (role family, city, sector, company size, buyer job title), never personal traits of a person.
 
+### The existing leads
+The plugin starts with the leads carried over from the old funnel: people with a verified email and a role posted in the last 30 days (14 days if only Apollo lists it). They sit in `config/imported-leads.json` and run as the campaign **existing-leads**, which ends when all of them are contacted or on 31 Dec. The runs email the freshest roles first, within the warm-up limit. Anyone the old funnel already emailed is on the blocklist (`config/already-contacted.csv`). To refresh both from the old database, run `python tools/export_leads.py` (it needs access to the old server).
+
 ## Commands
 - `/stellaspire-outreach:status`: where things stand today.
 - `/stellaspire-outreach:do-not-contact <email or domain>`: never contact them again.
