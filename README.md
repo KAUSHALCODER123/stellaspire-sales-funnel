@@ -103,4 +103,8 @@ Bigger changes (new cities or roles, limits, send mode, rules) are made by askin
 Run `/stellaspire-outreach:status`, then `/stellaspire-outreach:setup-check`. Most failures are a disconnected Gmail connector, a missing or expired Apollo or Hiresome key, or an approval prompt that stops a scheduled run.
 
 ## LinkedIn notes
-Open the LinkedIn doc (link in `linkedin_doc_url`, and in each report). Today's notes are at the top. For each one, open the profile, choose Connect, then "Add a note", and paste. Notes are at most 300 characters, which is LinkedIn's limit. Free LinkedIn accounts can send only a few personal notes a month, so send the top ones first, or send the invite without a note.
+The daily run writes a short connection note for each person it emails and adds a row to the LinkedIn notes doc (link in `linkedin_doc_url`, and in each report): `Date | Name | Title | Company | Profile link | Note | Status`, with Status `ready`.
+
+To get the notes onto LinkedIn, open Claude with the Claude in Chrome extension turned on, in the Chrome where Nikita is signed in to LinkedIn, and type `/stellaspire-outreach:linkedin-draft`. Claude opens up to 5 profiles, each in its own tab, clicks Connect, then "Add a note", and types the note. It stops there. Nikita reads each tab and presses Send herself. Claude then marks the rows `drafted`, and `sent` once she says so.
+
+LinkedIn does not keep an unsent note, so a draft is an open tab. If a tab is closed first, tell Claude and the row goes back to `ready`. Free LinkedIn accounts can send only a few personal notes a month; if LinkedIn says the limit is reached, Claude stops and tells you. Scheduled runs never touch LinkedIn, and Claude never presses Send. LinkedIn restricts accounts that do a lot of automated activity, so keep to a few profiles a day.

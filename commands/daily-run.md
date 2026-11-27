@@ -164,7 +164,7 @@ Output `results`: per email, `allowed` and `reasons`. Continue only with `allowe
 For each allowed contact, in rank order, up to `new_cap` in total and up to each campaign's `quota_today` (default targeting: `new_cap` only): run the `write-email` skill for step 1 (new thread). Pass the contact's campaign `angle`, if any, as optional guidance. Label the new thread `SS/C-<slug>` as well as `SS/Step-1`. Stop when the quotas or `new_cap` are used up. In `dry_run` write nothing to Gmail and put the final texts in the report.
 
 ## 7b. LinkedIn notes
-For each contact who got a step 1 email today and has a LinkedIn profile from step 5 (for an imported lead, `contact.linkedin_url`), write a LinkedIn connection note for Nikita to send by hand. LinkedIn is never automated: no tool may visit, log in to or message on LinkedIn.
+For each contact who got a step 1 email today and has a LinkedIn profile from step 5 (for an imported lead, `contact.linkedin_url`), write a LinkedIn connection note for Nikita. Scheduled runs never visit, sign in to or message on LinkedIn. Only Nikita's own `/stellaspire-outreach:linkedin-draft` command, run in her Chrome, opens profiles, and it never sends.
 - Use the same facts as that contact's email. The note names the exact open role, says one concrete thing we would do for it, and may end with one short question. No ask for a call or meeting, no links, no numbers except those in the facts. It must not repeat the email word for word.
 - Check it, fix it with the problems list (max 3 tries, else drop the note and log it):
 ```
@@ -172,7 +172,7 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" check-linkedin <<'JSON'
 {"note": "Hi Asha, saw the SDR role at Acme ...", "facts": {}}
 JSON
 ```
-- Add today's notes to the LinkedIn doc at `linkedin_doc_url` through the Claude Docs connector (load its guide first). Insert a new section at the top headed with today's date. Under it, one entry per person: name, title, company, LinkedIn profile URL, the note, and the subject of the email they got today. Leave older sections as they are. If `linkedin_doc_url` is empty or the doc can't be reached, put the notes in the report under "LinkedIn notes" instead and say why. In `dry_run`, put them only in the report.
+- Add today's notes to the LinkedIn doc at `linkedin_doc_url` through the Claude Docs connector (load its guide first). Keep one table in the doc with the columns `Date | Name | Title | Company | Profile link | Note | Status`. Add one row per person at the top, with today's date and Status `ready`. Leave older rows as they are. If `linkedin_doc_url` is empty or the doc can't be reached, put the notes in the report under "LinkedIn notes" instead and say why. In `dry_run`, put them only in the report.
 
 ## 8. Report
 Compose the report (plain text, no emoji). If the interested alert failed, the first line is `ALERT NOT SENT`. Sections, in this order:
