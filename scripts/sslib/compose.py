@@ -15,7 +15,8 @@ def signature(cfg: dict) -> str:
     links = " | ".join(x for x in (cfg.get("sender_phone"), _site(cfg.get("sender_website")),
                                    _site(cfg.get("sender_linkedin"))) if x)
     title = ", ".join(x for x in (cfg.get("sender_title"), cfg.get("sender_company")) if x)
-    return "\n".join(x for x in (title, links) if x) + f"\n\n{cfg['opt_out_line']}"
+    opt_out = (cfg.get("opt_out_line") or "").strip()
+    return "\n".join(x for x in (title, links) if x) + (f"\n\n{opt_out}" if opt_out else "")
 
 
 def signature_html(cfg: dict) -> str:
@@ -31,7 +32,8 @@ def signature_html(cfg: dict) -> str:
             f'style="height:56px;border:0"><br>' if cfg.get("sender_logo_url") else "")
     title = f'<br>{esc(cfg["sender_title"])}, {esc(cfg["sender_company"])}' if cfg.get("sender_title") else ""
     company = "" if title else f'<b>{esc(cfg["sender_company"])}</b><br>'
-    opt_out = f'<br><br><span style="color:#777;font-size:12px">{esc(cfg["opt_out_line"])}</span>'
+    opt_out = (f'<br><br><span style="color:#777;font-size:12px">{esc(cfg["opt_out_line"])}</span>'
+               if (cfg.get("opt_out_line") or "").strip() else "")
     return f'{title}<br><br>{logo}{company}{" | ".join(parts)}{opt_out}'
 
 

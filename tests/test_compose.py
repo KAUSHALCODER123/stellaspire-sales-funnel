@@ -9,20 +9,20 @@ OPT_OUT = 'If this isn\'t relevant, reply "no" and I won\'t write again.'
 PROOF = "We recently filled 2 Data Engineer roles."
 
 
-def test_email_one_inserts_the_proof_between_intro_and_ask_and_ends_with_the_opt_out():
+def test_email_one_inserts_the_proof_between_intro_and_ask_and_ends_with_the_signature():
     r = compose({"step": 1, "subject": SUBJECT, "body": email1(), "facts": {**FACTS, "placement_proof": PROOF}})
     assert r["subject"] == SUBJECT
-    assert r["body"].endswith(OPT_OUT)
+    assert OPT_OUT not in r["body"] and OPT_OUT not in r["body_html"]
     body = r["body"]
     assert body.index(INTRO) < body.index(PROOF) < body.index(ASK)
     assert body.count(PROOF) == 1
     assert body.endswith(
-        "Nikita\nFounder, Stellaspire\n+91 7024766117 | stellaspire.com | linkedin.com/company/stellaspire\n\n" + OPT_OUT)
+        "Nikita\nFounder, Stellaspire\n+91 7024766117 | stellaspire.com | linkedin.com/company/stellaspire")
 
 
 def test_email_one_without_proof_has_no_gap():
     r = compose({"step": 1, "subject": SUBJECT, "body": email1(), "facts": FACTS})
-    assert "\n\n\n" not in r["body"] and r["body"].endswith(OPT_OUT)
+    assert "\n\n\n" not in r["body"] and OPT_OUT not in r["body"]
 
 
 def test_proof_is_dropped_when_it_leaves_the_model_too_little_room():
@@ -33,7 +33,7 @@ def test_proof_is_dropped_when_it_leaves_the_model_too_little_room():
 
 def test_follow_up_gets_signature_and_no_subject():
     r = compose({"step": 2, "body": FOLLOW, "facts": FACTS})
-    assert "subject" not in r and r["body"].startswith("Hi Asha,") and r["body"].endswith(OPT_OUT)
+    assert "subject" not in r and r["body"].startswith("Hi Asha,") and OPT_OUT not in r["body"]
 
 
 def test_failing_text_returns_an_error_with_hints_and_no_body():
@@ -63,7 +63,7 @@ def test_html_body_has_the_live_signature_with_logo_links_and_title_under_the_na
     assert '<img src="https://cdn.prod.website-files.com/' in page and 'height="56"' in page
     assert '+91 7024766117 | <a href="https://stellaspire.com">stellaspire.com</a> | ' \
            '<a href="https://www.linkedin.com/company/stellaspire/">LinkedIn</a>' in page
-    assert page.endswith("I won&#x27;t write again.</span>") or "write again.</span>" in page
+    assert "write again" not in page and page.endswith("</a>")
 
 
 def test_html_body_escapes_the_email_text_and_keeps_line_breaks():
@@ -74,3 +74,10 @@ def test_html_body_escapes_the_email_text_and_keeps_line_breaks():
 
 def test_plain_body_shows_short_website_and_linkedin_labels():
     assert "+91 7024766117 | stellaspire.com | linkedin.com/company/stellaspire" in _compose_one()["body"]
+
+
+def test_opt_out_line_is_added_only_when_configured():
+    from sslib.compose import signature
+    cfg = {"sender_title": "Founder", "sender_company": "Stellaspire"}
+    assert signature(cfg) == "Founder, Stellaspire"
+    assert signature({**cfg, "opt_out_line": OPT_OUT}).endswith("\n\n" + OPT_OUT)

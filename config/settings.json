@@ -6,7 +6,7 @@
   "sender_phone": "+91 7024766117",
   "sender_website": "https://stellaspire.com",
   "sender_linkedin": "https://www.linkedin.com/company/stellaspire/",
-  "opt_out_line": "If this isn't relevant, reply \"no\" and I won't write again.",
+  "opt_out_line": "",
   "send_mode": "draft",
   "paused": false,
   "when_no_campaign": "wait",
