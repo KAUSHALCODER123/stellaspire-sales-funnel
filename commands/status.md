@@ -8,7 +8,7 @@ description: "Show where the funnel stands: caps today, pause state, warm-up wee
 
 Read-only. Write nothing, send nothing.
 
-1. Count from Gmail: `sent_today`, `drafted_today`, open `SS/Step-*` threads by step, replies waiting (threads with an inbound message and no `SS/Replied`), unsent drafts labelled `SS/Step-*`.
+1. Count from Gmail: `sent_today`, `drafted_today`, open `SS/Step-*` threads by step, replies waiting (threads with an inbound message and no `SS/Replied`), unsent drafts of ours (`list_drafts` searching `"I won't write again"`).
 2. Caps and calendar:
 ```
 python3 scripts/ss.py today <<'JSON'

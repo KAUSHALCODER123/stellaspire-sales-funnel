@@ -53,6 +53,19 @@ The connector asks the user to approve credit spending before it runs. So before
 ## 0. Run lock
 Unless `send_mode` is `dry_run`, create a note-to-self (from the `.in` mailbox to itself) with subject `SS Run lock` right now, so `reply-check` knows a daily run is in progress. At the very end of the run (after the report is sent, or when you stop early for any reason) delete that note, or if deleting is not possible label it `SS/Done`. A lock note older than 90 minutes is stale: ignore it and delete it.
 
+## Label what Nikita sent
+Gmail does not let the connector label a draft ("The caller does not have permission"), so drafts carry no labels. This step labels the threads Nikita has since sent. Do it before counting anything, because the counts below use the labels.
+1. Find our sent cold emails: search threads with `in:sent "I won't write again" newer_than:60d` (that line is in every email we write). For each thread, read its messages' senders and labels (`get_thread`, metadata only; use `list_labels` to turn label ids into names). `our_messages` is how many messages in the thread were sent from the sending address (`sending_address` in settings); `to` is the contact's address (the To of our first message); `labels` are the thread's label names.
+2. Read the ledger: search `in:sent subject:"SS Drafted" newer_than:60d` and take the JSON list in the body of each note: `[{"email": "...", "campaign": "<slug or null>", "step": 1, "subject": "..."}]`. Merge them into one list.
+3. Ask the script what is missing:
+```
+python3 scripts/ss.py sync-plan <<'JSON'
+{"threads": [{"thread_id": "t1", "to": "asha@example.com", "our_messages": 1, "labels": []}],
+ "ledger": [{"email": "asha@example.com", "campaign": "existing-leads"}]}
+JSON
+```
+Apply each `actions` entry with `label_thread` (create a missing label first). Threads in `unmatched` have no known campaign: leave them without a campaign label and list them under Skipped. Label only. Never send, delete or edit anything here, and do nothing on `dry_run`.
+
 ## 1. Health and calendar
 Count from Gmail (last 14 days): messages we sent on `SS/Step-*` threads, threads labelled `SS/Bounced`, spam complaints (threads with `SS/Do-not-contact` that came from a complaint notice; if unsure, count none and say so).
 ```
@@ -62,7 +75,7 @@ JSON
 ```
 If `pause` is true: stop, and email the short report with `reason` (as for any early stop below).
 
-Count `sent_today` (our messages sent today) and `drafted_today` (drafts we created today carrying an `SS/Step-*` label) from Gmail. Also count `pending_drafts` (all unsent drafts carrying an `SS/Step-*` label, of any age) and `oldest_pending_draft_at` (creation time of the oldest of them, or null). You do not know `followups_due` yet, so first run step 3's gather and `next-step`, count `due`, then call:
+Count `sent_today` (our messages sent today) and `drafted_today` (drafts we created today) from Gmail. A draft of ours is one in `list_drafts` (search `"I won't write again"`) because every email we write carries that line. Also count `pending_drafts` (all unsent drafts of ours, of any age) and `oldest_pending_draft_at` (creation time of the oldest of them, or null). You do not know `followups_due` yet, so first run step 3's gather and `next-step`, count `due`, then call:
 ```
 python3 scripts/ss.py today <<'JSON'
 {"sent_today": 0, "drafted_today": 0, "followups_due": 0, "pending_drafts": 0, "oldest_pending_draft_at": null}
@@ -163,7 +176,7 @@ JSON
 Output `results`: per email, `allowed` and `reasons`. Continue only with `allowed: true`. Log every blocked one with its reasons under Skipped. The seed CSVs in `config/` are read by the script itself.
 
 ## 7. Write step 1 emails
-For each allowed contact, in rank order, up to `new_cap` in total and up to each campaign's `quota_today` (default targeting: `new_cap` only): run the `write-email` skill for step 1 (new thread). Pass the contact's campaign `angle`, if any, as optional guidance. Label the new thread `SS/C-<slug>` as well as `SS/Step-1`. Stop when the quotas or `new_cap` are used up. In `dry_run` write nothing to Gmail and put the final texts in the report.
+For each allowed contact, in rank order, up to `new_cap` in total and up to each campaign's `quota_today` (default targeting: `new_cap` only): run the `write-email` skill for step 1 (new thread). Pass the contact's campaign `angle`, if any, as optional guidance. Do not try to label a draft. Stop when the quotas or `new_cap` are used up. Then write the ledger: unless `dry_run`, send a note-to-self (from the `.in` mailbox to itself) with subject `SS Drafted <YYYY-MM-DD>` and, as the body, only the JSON list of the emails you made today: `[{"email": "...", "campaign": "<slug>", "step": 1, "subject": "..."}]` (use `null` for default targeting). Mark it read and archive it (remove `INBOX` and `UNREAD`). The next run's "Label what Nikita sent" step uses it to label each thread once it is sent. The same goes for follow-up drafts in step 3: add them to the ledger too, with their step. In `dry_run` write nothing to Gmail and put the final texts in the report.
 
 ## 7b. LinkedIn notes
 For each contact who got a step 1 email today and has a LinkedIn profile from step 5 (for an imported lead, `contact.linkedin_url`), write a LinkedIn connection note for Nikita. Scheduled runs never visit, sign in to or message on LinkedIn. Only Nikita's own `/stellaspire-outreach:linkedin-draft` command, run in her Chrome, opens profiles, and it never sends.

@@ -11,6 +11,7 @@ Handle replies only. Write no new outreach and no follow-ups.
 Hard rules: if a script says no, do not do it; never edit config or settings (only read the `SS Settings` note); never create, change or activate a campaign (only read `SS Campaign` notes); on any connector failure stop and report; the plugin directory is read-only, write no files.
 
 0. Run lock: search for a note-to-self with subject `SS Run lock` created less than 90 minutes ago. If there is one, a daily run is in progress: stop now and print "daily run in progress". Create no lock note of your own. A lock older than 90 minutes is stale: ignore it.
+0a. Label what Nikita sent: do the "Label what Nikita sent" step of `commands/daily-run.md` (find our sent threads, read the ledger, run `ss.py sync-plan`, apply the labels). Replies are matched to threads by their labels, so a thread Nikita sent after the morning run must be labelled first.
 0b. Settings overrides, before any other script call. Search the `.in` mailbox for the newest note with subject `SS Settings` (label `SS/Settings`, body is JSON of overrides only) and run `ss.py load-settings` with `{"overrides": <that JSON>}` (use `{"overrides": {}}` when there is no note, which also clears an old override left on this machine). If the body is not valid JSON or the script exits non-zero, ignore the note, run it again with `{"overrides": {}}`, use the plugin defaults, and list the note under Needs Nikita with the problems. Only READ this note: never create, change or delete it.
 1. Health first:
 ```

@@ -44,7 +44,7 @@ Compose inserts the proof sentence (step 1), the signature and the opt-out line,
    - `send`: send with the Gmail connector.
    Use `body_html` as an HTML body whenever the connector accepts one (look for an HTML or content-type option on its draft and send tools), so the logo and links show. If the connector only takes plain text, use `body` and say so once in the report. Never type or edit signature text yourself.
    Step 1 starts a new thread to the contact's verified address, using compose's subject. Steps 2 to 5 reply in the same thread (reply to the latest message, keep the thread, no new subject).
-7. Label the thread `SS/Step-N` (N = this step; create the label if missing). In `dry_run` do not label.
+7. Labels: Gmail refuses labels on drafts, so in `draft` mode do not label anything. The run records the draft in its ledger note and labels the thread after Nikita has sent it (see `commands/daily-run.md`). In `send` mode, label the sent thread `SS/Step-N` (N = this step) and its campaign label `SS/C-<slug>` right after sending (create a missing label first). In `dry_run` write and label nothing.
 
 Only ever write to the contact's verified address on the company domain. Never to the `.com` Stellaspire mailbox, never to a role mailbox.
 

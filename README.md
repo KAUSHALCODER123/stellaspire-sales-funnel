@@ -34,6 +34,7 @@ Every hard rule (limits, who may be emailed, how old a role may be, what the ema
 8. **Do one manual `/stellaspire-outreach:daily-run`** while `send_mode` is `dry_run` to see a report, then switch to `draft`.
 
 ## Your daily routine
+- Gmail does not let Claude label a draft, so a new draft has no labels. After you send it, the next run labels that thread (and the follow-ups) by itself. Don't send drafts you haven't read, and don't forward or move them.
 - About 09:30: open Gmail, go to Drafts, read the new drafts, press Send on the good ones. Delete or edit the bad ones.
 - Read the report email. "Needs Nikita" lists what only you can do: interested replies, odd replies, decisions.
 - An email titled "Interested reply: ..." means someone wants to talk. It comes with a suggested reply. Answer it the same day.

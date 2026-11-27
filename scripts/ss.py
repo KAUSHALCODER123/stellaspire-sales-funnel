@@ -21,11 +21,12 @@ from sslib.imported import imported_leads
 from sslib.hiresome import HiresomeError, hiresome
 from sslib.proof import facts, proof
 from sslib.roles import role_check
+from sslib.sync import sync_plan
 from sslib.settings_override import load_settings, settings_check
 
 COMMANDS = {"today": today, "role-check": role_check, "check-contacts": check_contacts, "fit": fit, "proof": proof,
             "facts": facts, "check-email": check_email, "check-linkedin": check_linkedin, "compose": compose, "next-step": next_step,
-            "health": health, "apollo": apollo, "hiresome": hiresome, "campaign": campaign, "imported-leads": imported_leads,
+            "health": health, "apollo": apollo, "hiresome": hiresome, "campaign": campaign, "imported-leads": imported_leads, "sync-plan": sync_plan,
             "campaign-check": campaign_check, "settings-check": settings_check, "load-settings": load_settings}
 
 
