@@ -1,6 +1,5 @@
 """IST calendar decisions: send day, warm-up caps, business-day follow-up timing."""
-from datetime import date, datetime, timedelta
-from zoneinfo import ZoneInfo
+from datetime import date, datetime, timedelta, timezone
 
 from .config import settings
 
@@ -9,7 +8,7 @@ try:
 except ImportError:  # unknown holiday calendar: never send
     country_holidays = None
 
-IST = ZoneInfo("Asia/Kolkata")
+IST = timezone(timedelta(hours=5, minutes=30), "IST")  # India has no daylight saving; no tz database needed
 STEP_DELAYS_DAYS = (0, 3, 4, 5, 7)  # business days after the previous email
 WARMUP_CAPS = (5, 10, 15, 20)  # by full weeks since warmup_start_date; week 3 and later = 20
 STEPS = 5

@@ -1,14 +1,39 @@
 {
   "campaigns": [
     {
+      "slug": "existing-leads",
+      "name": "Existing leads from the old funnel",
+      "status": "active",
+      "source": "imported",
+      "target_contacts": 31,
+      "start_date": "2026-11-27",
+      "end_date": "2026-12-31",
+      "priority": 5,
+      "angle": "Quote the open role and our real placement numbers; one closing question for that company."
+    },
+    {
       "slug": "example-bengaluru-tech-hiring",
       "name": "Example: Bengaluru tech and data hiring",
       "status": "draft",
-      "families": ["tech_ai_data"],
-      "cities": ["Bengaluru"],
-      "industries": ["saas", "fintech"],
-      "headcount": [50, 500],
-      "seniority": ["Head of Talent Acquisition", "CTO", "VP Engineering"],
+      "families": [
+        "tech_ai_data"
+      ],
+      "cities": [
+        "Bengaluru"
+      ],
+      "industries": [
+        "saas",
+        "fintech"
+      ],
+      "headcount": [
+        50,
+        500
+      ],
+      "seniority": [
+        "Head of Talent Acquisition",
+        "CTO",
+        "VP Engineering"
+      ],
       "target_contacts": 100,
       "start_date": "2026-12-01",
       "end_date": "2027-01-31",

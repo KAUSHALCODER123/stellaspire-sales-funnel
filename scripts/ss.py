@@ -5,6 +5,9 @@ Bad input exits 2 with {"error": ...}. Every decision lives in sslib; this file 
 """
 import json
 import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent / "vendor"))  # bundled holidays, dateutil, six: used only if not installed
 
 from sslib.apollo import ApolloError, apollo
 from sslib.calendar_ist import next_step, today
@@ -14,6 +17,7 @@ from sslib.email_check import check_email, check_linkedin
 from sslib.fit import fit
 from sslib.guard import check_contacts
 from sslib.health import health
+from sslib.imported import imported_leads
 from sslib.hiresome import HiresomeError, hiresome
 from sslib.proof import facts, proof
 from sslib.roles import role_check
@@ -21,7 +25,7 @@ from sslib.settings_override import load_settings, settings_check
 
 COMMANDS = {"today": today, "role-check": role_check, "check-contacts": check_contacts, "fit": fit, "proof": proof,
             "facts": facts, "check-email": check_email, "check-linkedin": check_linkedin, "compose": compose, "next-step": next_step,
-            "health": health, "apollo": apollo, "hiresome": hiresome, "campaign": campaign,
+            "health": health, "apollo": apollo, "hiresome": hiresome, "campaign": campaign, "imported-leads": imported_leads,
             "campaign-check": campaign_check, "settings-check": settings_check, "load-settings": load_settings}
 
 

@@ -62,8 +62,9 @@ def test_today_honours_paused_override():
     assert out["paused"] is True
 
 
-def test_campaign_command_sees_override():
+def test_campaign_command_sees_override(config_dir):
     from sslib.campaigns import campaign
+    (config_dir / "campaigns.json").write_text('{"campaigns": []}')
     load_settings({"overrides": {"when_no_campaign": "default"}})
     assert campaign({"counts": {}, "new_cap": 5, "now": MONDAY})["default_targeting"] is True
 

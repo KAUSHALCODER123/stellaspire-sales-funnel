@@ -25,8 +25,9 @@ def run(counts=None, new_cap=10, now=NOW):
 
 
 def test_shipped_example_is_draft_and_inert():
-    out = run()
-    assert out["active"] == [] and out["completed"] == [] and out["waiting_for_campaign"] is True
+    out = run(now="2026-11-28T09:00:00+05:30")
+    slugs = [c["slug"] for c in out["active"]]
+    assert slugs == ["existing-leads"] and out["completed"] == [] and out["waiting_for_campaign"] is False
 
 
 def test_draft_ignored(setup):

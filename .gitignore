@@ -5,3 +5,4 @@ __pycache__/
 .env.*
 !.env.example
 *.env
+config/imported-leads.json

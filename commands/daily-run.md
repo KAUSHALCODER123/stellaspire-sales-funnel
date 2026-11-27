@@ -112,11 +112,19 @@ Pass the agent's `status`, `posted_at` and `on_employer_board` (`closed` if the 
 ## 4. Find leads
 - `waiting_for_campaign` is true: no campaign is active and `when_no_campaign` is `wait`. Skip steps 4 to 7b (no new leads, no step 1 emails, no LinkedIn notes). Replies and follow-ups still ran. The report's first section says: "No active campaign: new outreach is paused until Nikita starts one", followed by suggested campaigns (1 to 3 ready-to-paste JSON blocks, as in step 9, based on the newest `SS/Lessons` note and Hiresome placement strengths).
 - `default_targeting` is true (`when_no_campaign` is `default`): run the `find-leads` skill once with the target families and cities in settings, for `new_cap` emails.
-- Otherwise, for each campaign in `active` (highest `priority` first, as returned), run the `find-leads` skill with that campaign's `families`, `cities`, `industries`, `headcount` and `seniority`. Do nothing for a campaign whose `quota_today` is 0. Stop that campaign's search once you have enough companies to fill its `quota_today`. Keep the campaign slug with every company found.
+- A campaign whose `source` is `imported` (the existing leads carried over from the old funnel): do not search. Take its leads from the plugin file instead:
+```
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" imported-leads <<'JSON'
+{"limit": 10}
+JSON
+```
+  Use twice the campaign's `quota_today` as `limit`. `candidates` are leads whose role is still recent enough (listed by the employer's own board first, then the newest), each with `company`, `segment`, `contact` (verified email, LinkedIn profile) and `role` (`title`, `url`, `posted_at`, `on_employer_board`). `skipped` says why the others are out (`stale`, `undated`, `not_hireable`); report them. Confirm each candidate's role is still open with the `role-checker` agent (company domain, role title, role `url`) and drop it if `status` is `closed`. These leads skip the `research-account` skill and step 5 items 1 to 3, because the contact is already known and verified. Go on with step 5 item 4 (the Hiresome proof), then step 6.
+- Otherwise, for each campaign in `active` whose `source` is `search` (highest `priority` first, as returned), run the `find-leads` skill with that campaign's `families`, `cities`, `industries`, `headcount` and `seniority`. Do nothing for a campaign whose `quota_today` is 0. Stop that campaign's search once you have enough companies to fill its `quota_today`. Keep the campaign slug with every company found.
 
-Then the `research-account` skill on the output. The result is a ranked list of companies (P0 > P1 > P2, DQ dropped) with their verified roles. Enough companies means about `companies_per_new_email` (3) per email still to write, since many fall out at the contact and check steps, but never more than `research_budget` companies researched in total. Pass `research_budget` to `find-leads` and `research-account`.
+Then, for search campaigns only, the `research-account` skill on the output. The result is a ranked list of companies (P0 > P1 > P2, DQ dropped) with their verified roles. Enough companies means about `companies_per_new_email` (3) per email still to write, since many fall out at the contact and check steps, but never more than `research_budget` companies researched in total. Pass `research_budget` to `find-leads` and `research-account`.
 
 ## 5. Research contacts and proof
+Imported leads skip items 1 to 3 below: their contact is already known and verified. They only need item 4.
 Only the first `research_budget` companies of the whole run (counting those already researched in step 4) get a contact scout. For each company in rank order:
 1. Contact scout: launch the `contact-scout` agent (several companies in parallel). Pass company, domain, family, roles, buyer titles; it stops once it has about 2 people.
 2. Apollo people: `ss.py apollo` with `{"action": "search_people", "organization_id": "...", "titles": [...]}` (the organization id comes from `search_orgs`). Search results carry no email; reveal the chosen ones with `{"action": "reveal", "person_ids": ["..."]}`. Merge with the scout's people by name.
@@ -156,7 +164,7 @@ Output `results`: per email, `allowed` and `reasons`. Continue only with `allowe
 For each allowed contact, in rank order, up to `new_cap` in total and up to each campaign's `quota_today` (default targeting: `new_cap` only): run the `write-email` skill for step 1 (new thread). Pass the contact's campaign `angle`, if any, as optional guidance. Label the new thread `SS/C-<slug>` as well as `SS/Step-1`. Stop when the quotas or `new_cap` are used up. In `dry_run` write nothing to Gmail and put the final texts in the report.
 
 ## 7b. LinkedIn notes
-For each contact who got a step 1 email today and has a LinkedIn profile from step 5, write a LinkedIn connection note for Nikita to send by hand. LinkedIn is never automated: no tool may visit, log in to or message on LinkedIn.
+For each contact who got a step 1 email today and has a LinkedIn profile from step 5 (for an imported lead, `contact.linkedin_url`), write a LinkedIn connection note for Nikita. Scheduled runs never visit, sign in to or message on LinkedIn. Only Nikita's own `/stellaspire-outreach:linkedin-draft` command, run in her Chrome, opens profiles, and it never sends.
 - Use the same facts as that contact's email. The note names the exact open role, says one concrete thing we would do for it, and may end with one short question. No ask for a call or meeting, no links, no numbers except those in the facts. It must not repeat the email word for word.
 - Check it, fix it with the problems list (max 3 tries, else drop the note and log it):
 ```
@@ -164,7 +172,7 @@ python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" check-linkedin <<'JSON'
 {"note": "Hi Asha, saw the SDR role at Acme ...", "facts": {}}
 JSON
 ```
-- Add today's notes to the LinkedIn doc at `linkedin_doc_url` through the Claude Docs connector (load its guide first). Insert a new section at the top headed with today's date. Under it, one entry per person: name, title, company, LinkedIn profile URL, the note, and the subject of the email they got today. Leave older sections as they are. If `linkedin_doc_url` is empty or the doc can't be reached, put the notes in the report under "LinkedIn notes" instead and say why. In `dry_run`, put them only in the report.
+- Add today's notes to the LinkedIn doc at `linkedin_doc_url` through the Claude Docs connector (load its guide first). Keep one table in the doc with the columns `Date | Name | Title | Company | Profile link | Note | Status`. Add one row per person at the top, with today's date and Status `ready`. Leave older rows as they are. If `linkedin_doc_url` is empty or the doc can't be reached, put the notes in the report under "LinkedIn notes" instead and say why. In `dry_run`, put them only in the report.
 
 ## 8. Report
 Compose the report (plain text, no emoji). If the interested alert failed, the first line is `ALERT NOT SENT`. Sections, in this order:
