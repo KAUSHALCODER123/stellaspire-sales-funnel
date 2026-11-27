@@ -5,6 +5,9 @@ Bad input exits 2 with {"error": ...}. Every decision lives in sslib; this file 
 """
 import json
 import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent / "vendor"))  # bundled holidays, dateutil, six: used only if not installed
 
 from sslib.apollo import ApolloError, apollo
 from sslib.calendar_ist import next_step, today
