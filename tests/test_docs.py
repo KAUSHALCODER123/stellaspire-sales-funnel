@@ -19,5 +19,5 @@ def test_every_script_call_names_a_real_command():
 
 def test_every_command_has_a_project_level_wrapper_pointing_at_it():
     for f in (ROOT / "commands").glob("*.md"):
-        wrapper = (ROOT / ".claude" / "commands" / f.name).read_text(encoding="utf-8")
+        wrapper = (ROOT / ".claude" / "commands" / f"ss-{f.name}").read_text(encoding="utf-8")
         assert f"commands/{f.stem}.md" in wrapper and "$ARGUMENTS" in wrapper
