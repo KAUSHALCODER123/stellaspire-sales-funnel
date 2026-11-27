@@ -143,6 +143,37 @@ def test_role_centred_subjects_pass(subject):
     assert "bad_subject" not in check(subject=subject)["problems"]
 
 
+DATED = {**FACTS, "role_open_days": 237, "role_posted_on": "April 3"}
+
+
+@pytest.mark.parametrize("subject", ["your Data Engineer post is 237 days old", "Data Engineer seat empty since April",
+                                     "still no Data Engineer at Acme AI?"])
+def test_dated_lead_subject_with_a_real_fact_passes(subject):
+    assert "subject_not_specific" not in check(subject=subject, facts=DATED)["problems"]
+
+
+def test_dated_lead_generic_subject_fails():
+    assert "subject_not_specific" in check(subject="still hunting for a Data Engineer?", facts=DATED)["problems"]
+
+
+def test_undated_lead_may_use_the_generic_subject():
+    assert "subject_not_specific" not in check(subject="still hunting for a Data Engineer?")["problems"]
+
+
+def check_recent(subject, recent):
+    return check_email({"step": 1, "subject": subject, "body": email1(), "facts": FACTS, "previous": [],
+                        "recent_subjects": recent})
+
+
+def test_subject_already_sent_recently_fails():
+    assert "subject_repeats_recent" in check_recent(SUBJECT, ["Still hunting for a Data Engineer?"])["problems"]
+    assert "subject_repeats_recent" in check_recent(SUBJECT, [SUBJECT.replace("a Data", "the Data")])["problems"]
+
+
+def test_new_subject_passes_the_repeat_check():
+    assert "subject_repeats_recent" not in check_recent(SUBJECT, ["the role that won't close"])["problems"]
+
+
 def test_subject_is_ignored_after_step_one():
     assert check(2, subject="Still Hunting For Applications")["ok"]
 

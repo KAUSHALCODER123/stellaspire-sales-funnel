@@ -47,8 +47,9 @@ def _fail(problems: list[str]) -> dict:
 def compose(inp: dict) -> dict:
     cfg, step, facts = settings(), int(inp["step"]), inp["facts"]
     body, subject, previous = inp["body"].strip(), (inp.get("subject") or "").strip(), inp.get("previous") or []
+    recent = inp.get("recent_subjects") or []
     if step == 1:
-        problems = problems_for(1, subject, body, facts, previous)  # the model's own text first
+        problems = problems_for(1, subject, body, facts, previous, recent_subjects=recent)  # the model's own text first
         if problems:
             return _fail(problems)
         proof = facts.get("placement_proof") if reserved_words(facts) else ""
@@ -56,7 +57,7 @@ def compose(inp: dict) -> dict:
         intro, ask, signoff = _split_intro(body, model_facts, cfg["sender_first_name"])
         body = "\n\n".join(filter(None, [intro, proof, ask, signoff]))
         problems = problems_for(1, subject, body, {**model_facts, "placement_proof": proof} if proof else model_facts,
-                                previous, final=bool(proof))
+                                previous, final=bool(proof), recent_subjects=recent)
     else:
         problems = problems_for(step, None, body, facts, previous)
     if problems:

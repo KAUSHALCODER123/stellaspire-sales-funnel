@@ -168,6 +168,10 @@ _RETRY_HINTS = {
                    "at most one question mark and only at the end, no first name.",
     "reads_like_an_application": "subject_reads_like_an_application: write about their open role, never 'hiring', "
                                  "'job', 'application' or 'candidate'.",
+    "subject_not_specific": "subject_not_specific: this role has a date, so the subject must carry one real fact: "
+                            "the days open (role_open_days), the month it was posted, or the company name.",
+    "subject_repeats_recent": "subject_repeats_recent: that subject was already sent to someone else; write a "
+                              "different line about this role.",
     "more_than_one_ask": "more_than_one_ask: one question mark per email, in its last line.",
     "asks_for_call": "asks_for_call: never ask to meet, talk or call; the only offer is profiles or a reply.",
     "machine_sounding": "machine_sounding: drop stock phrases, obvious pain lines and dashes.",
@@ -187,8 +191,28 @@ def reserved_words(facts: dict) -> int:
     return reserved if MAX_WORDS[0] - reserved >= MIN_MODEL_INTRO_WORDS else 0
 
 
+SUBJECT_REPEAT_RATIO = 0.85  # a subject this close to a recently sent one is a repeat
+
+
+def _subject_has_fact(subject: str, facts: dict) -> bool:
+    """A dated lead needs a subject with one real fact: days open, the month it was posted, or the company."""
+    if not (facts.get("role_open_days") or facts.get("role_posted_on")):
+        return True  # nothing dated to use; the generic pain line is the fallback
+    words = {w.casefold() for w in re.findall(r"[\w']+", subject)}
+    month = str(facts.get("role_posted_on") or "").split(" ")[0].casefold()
+    company = [w.casefold() for w in re.findall(r"[\w']+", facts.get("company") or "")]
+    return (str(facts.get("role_open_days")) in words or (month in words and month != "")
+            or (bool(company) and all(w in words for w in company)))
+
+
+def _repeats_recent(subject: str, recent: list[str]) -> bool:
+    squash_s = lambda t: re.sub(r"[^a-z0-9 ]", "", t.casefold()).strip()
+    mine = squash_s(subject)
+    return any(SequenceMatcher(None, mine, squash_s(r)).ratio() >= SUBJECT_REPEAT_RATIO for r in recent if r)
+
+
 def problems_for(step: int, subject: str | None, body: str, facts: dict, previous: list[str] = (),
-                 final: bool = False) -> list[str]:
+                 final: bool = False, recent_subjects: list[str] = ()) -> list[str]:
     """Problems with one email, applying the drafting.py validate() checks that belong to this step.
 
     final=False checks the model's own text (email 1 without the proof, its word limit reduced by the proof);
@@ -214,6 +238,10 @@ def problems_for(step: int, subject: str | None, body: str, facts: dict, previou
             problems.append("bad_subject")
         if _CANDIDATE_SUBJECT.search(subject):
             problems.append("subject_reads_like_an_application")
+        if "bad_subject" not in problems and not _subject_has_fact(subject, facts):
+            problems.append("subject_not_specific")
+        if subject and _repeats_recent(subject, list(recent_subjects or [])):
+            problems.append("subject_repeats_recent")
     else:
         subject = ""
     if not body:
@@ -273,7 +301,8 @@ def check_email(inp: dict) -> dict:
         raise ValueError("step must be 1-5")
     proof = facts.get("placement_proof") or ""
     final = step == 1 and bool(proof) and proof in inp["body"]
-    problems = problems_for(step, inp.get("subject"), inp["body"], facts, inp.get("previous") or [], final)
+    problems = problems_for(step, inp.get("subject"), inp["body"], facts, inp.get("previous") or [], final,
+                            inp.get("recent_subjects") or [])
     return {"ok": not problems, "problems": problems, "hints": hints_for(problems)}
 
 

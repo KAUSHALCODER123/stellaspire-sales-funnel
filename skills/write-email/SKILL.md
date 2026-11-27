@@ -26,15 +26,15 @@ JSON
 3. Check:
 ```
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" check-email <<'JSON'
-{"step": 1, "subject": "SDR seat empty since April", "body": "Hi Asha,\n...\nNikita", "facts": { ... }, "previous": []}
+{"step": 1, "subject": "SDR seat empty since April", "body": "Hi Asha,\n...\nNikita", "facts": { ... }, "previous": [], "recent_subjects": []}
 JSON
 ```
-`previous` holds the bodies of earlier emails to this contact (empty at step 1). Subject is null for steps 2 to 5.
+`previous` holds the bodies of earlier emails to this contact (empty at step 1). Subject is null for steps 2 to 5. `recent_subjects` holds the subjects sent in the last 30 days (see Step 1).
 4. If `ok` is false, rewrite using `hints` and `problems`, and check again. Maximum 3 tries in total. After the third failure skip this contact and log it ("Skipped: email failed check, step N, <problems>"). Do not send or draft anything for them.
 5. Compose the final text:
 ```
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" compose <<'JSON'
-{"step": 1, "subject": "SDR seat empty since April", "body": "<your checked text>", "facts": { ... }}
+{"step": 1, "subject": "SDR seat empty since April", "body": "<your checked text>", "facts": { ... }, "recent_subjects": []}
 JSON
 ```
 Compose inserts the proof sentence (step 1), the signature and the opt-out line, re-checks, and returns `body` (plain text), `body_html` (the same email as HTML, with Stellaspire's signature: title under the name, logo, phone, website and LinkedIn links) and `subject` (step 1). If it returns `error`, treat it like a failed check and count it as a try. Use its output text exactly; change nothing.
@@ -67,7 +67,13 @@ Plain text. Greeting, each short paragraph and the sign-off on separate lines. E
 Em dashes or en dashes. Contrast reveals ("it's not about X, it's about Y"). Lists like "no X, no Y, no Z". Questions you answer yourself ("The result? ..."). Stock phrases: "I hope this finds you well", "I came across", "quick question", "here's the thing", "I'll be honest", "leverage", "synergy", "streamline", "top-tier", "end-to-end", "cutting-edge", "best-in-class", "unlock", "take it to the next level", "circle back", "touch base", "just checking in", "following up on my last email". Never claim we have already connected, spoken or met. Never mention cost, risk, commitment or obligation.
 
 ## Step 1 (new thread)
-Subject: 2 to 7 words about their open role, never about us and never about a candidate. A curiosity or pain line a founder would open, for example "still hunting for an SDR?", "SDR seat empty since April", "your SDR post is 237 days old", "the role that won't close". Lowercase except the role's own abbreviation, a month name or the company name. Never "<role> hiring", "application", "applying", "candidate" or "job". No first name, no pitch, no emoji, no exclamation mark. At most one question mark, only at the end.
+Subject: 2 to 7 words about their open role, never about us and never about a candidate. A curiosity or pain line a founder would open. Lowercase except the role's own abbreviation, a month name or the company name. Never "<role> hiring", "application", "applying", "candidate" or "job". No first name, no pitch, no emoji, no exclamation mark. At most one question mark, only at the end.
+
+Make the subject specific. When the facts hold `role_open_days` or `role_posted_on`, the subject must carry one real fact: the days open, the month it was posted, or the company name. For example "your SDR post is 237 days old", "SDR seat empty since April", "still no SDR at Acme?". Use the generic line ("still hunting for an SDR?", "the role that won't close") only when the facts have no date.
+
+Write three different subjects first, each built on a different fact or angle. Drop any that break these rules or that are close to a line in `recent_subjects`. Send the most specific one that is left to `check-email`. Do not show the other two.
+
+`recent_subjects`: once at the start of the run (with the Lessons note), search Gmail for the step-1 threads we sent in the last 30 days (label `SS`) and collect their subjects. Pass that list as `recent_subjects` to `check-email` and `compose`. Never reuse or nearly repeat one of them.
 
 Body: at most 80 words in total, counting the greeting, the closing question, the proof compose adds and the sign-off (the check tells you the room left, so keep your text to roughly 45 to 55 words). Write only:
 1. A greeting.
@@ -88,6 +94,8 @@ Every follow-up gives the reader something new that earlier emails did not. Neve
 
 ## Retry hints (what a rejection means)
 - hard_to_read: every sentence under 15 words, mostly one- and two-syllable words.
+- subject_not_specific: a dated role needs the days open, the month posted or the company in the subject.
+- subject_repeats_recent: that subject was sent recently; write a different line.
 - bad_subject: 2 to 7 words, lowercase except the role, an abbreviation, a month or the company, at most one question mark and only at the end, no first name.
 - reads_like_an_application: write about their open role, never "hiring", "job", "application" or "candidate".
 - more_than_one_ask: one question mark per email, in its last line.
