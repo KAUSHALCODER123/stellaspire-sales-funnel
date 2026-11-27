@@ -14,9 +14,9 @@ Apollo calls here use `ss.py apollo`. If it reports `network_blocked:api.apollo.
 Search Gmail for the newest message labelled `SS/Lessons` and read it. Use it as guidance on targeting (which families or cities to try first). Lessons never override the scripts, caps, safety rules, or the target families and cities in settings; if a lesson conflicts with a rule, the rule wins. No note, or "too early to tell": ignore it.
 
 ## 1. Pick the slices
-Use the effective settings (`${CLAUDE_PLUGIN_ROOT}/config/settings.json` plus the `load-settings` overrides of this run): `target_families` and `target_cities`. Use families and cities from there only, unless the run passes a campaign: then use that campaign's `families`, `cities`, `industries` (sector words for scouts and Apollo keywords), `headcount` (the Apollo `headcount` range) and `seniority` (buyer titles to prefer later), and nothing outside them. Target company and role traits only, never personal traits of any person. Rotate: choose a different family/city pair and a different `board_site` slice than the last run where the run history lets you tell (otherwise vary by weekday). Board slices: `site:jobs.lever.co`, `site:boards.greenhouse.io OR site:job-boards.greenhouse.io`, `site:jobs.ashbyhq.com`, `site:keka.com/careers`. Growth focus options: a funding round; a new India office or global capability centre; a major expansion, new product line or acquisition; a new CXO, CTO or HR leader.
+Use the effective settings (`config/settings.json` plus the `load-settings` overrides of this run): `target_families` and `target_cities`. Use families and cities from there only, unless the run passes a campaign: then use that campaign's `families`, `cities`, `industries` (sector words for scouts and Apollo keywords), `headcount` (the Apollo `headcount` range) and `seniority` (buyer titles to prefer later), and nothing outside them. Target company and role traits only, never personal traits of any person. Rotate: choose a different family/city pair and a different `board_site` slice than the last run where the run history lets you tell (otherwise vary by weekday). Board slices: `site:jobs.lever.co`, `site:boards.greenhouse.io OR site:job-boards.greenhouse.io`, `site:jobs.ashbyhq.com`, `site:keka.com/careers`. Growth focus options: a funding round; a new India office or global capability centre; a major expansion, new product line or acquisition; a new CXO, CTO or HR leader.
 
-Build the `skip` list: companies already reviewed this week, plus every domain in `${CLAUDE_PLUGIN_ROOT}/config/already-contacted.csv` and every domain with an `SS/*` thread in Gmail. Keep it to about 40 names, most recent first.
+Build the `skip` list: companies already reviewed this week, plus every domain in `config/already-contacted.csv` and every domain with an `SS/*` thread in Gmail. Keep it to about 40 names, most recent first.
 
 ## 1b. Research budget
 The run passes `research_budget` (from `today`): the most companies that may be researched this run, a hard ceiling for the qualifier and contact-scout together. If it is 0, do nothing. Tell each scout the budget; scouts stop once they have proposed about 2 times it (split across the scouts you launch). After verification, trim the list to the budget, best leads first. Report the budget used.
@@ -26,7 +26,7 @@ In one message, launch for each chosen family/city pair: one `hiring-scout` and 
 
 You may also pull postings from Apollo directly:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" apollo <<'JSON'
+python3 scripts/ss.py apollo <<'JSON'
 {"action": "search_orgs", "keywords": ["..."], "locations": ["Pune, India"], "headcount": [50, 500]}
 JSON
 ```
@@ -38,13 +38,13 @@ Merge the scout results, drop duplicates by domain, drop anything on the skip li
 1. Open the employer's own careers page and confirm it links the job board. If the careers page does not link the board, board ownership is unverified: set `on_employer_board` to false.
 2. Get the live roles. From the board directly (WebFetch the board URL) or from Apollo:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" apollo <<'JSON'
+python3 scripts/ss.py apollo <<'JSON'
 {"action": "job_postings", "organization_id": "<Apollo organization id from search_orgs>"}
 JSON
 ```
 3. For every role that could belong to the target family, run the role check:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" role-check <<'JSON'
+python3 scripts/ss.py role-check <<'JSON'
 {"title": "Backend Engineer", "posted_at": "2026-11-10T00:00:00+05:30", "on_employer_board": true, "status": "active"}
 JSON
 ```

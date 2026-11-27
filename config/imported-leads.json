@@ -1,0 +1,1502 @@
+{
+ "exported_on": "2026-11-27",
+ "leads": [
+  {
+   "company": {
+    "name": "Capillary Technologies",
+    "domain": "capillarytech.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Aneesh Reddy",
+    "title": "Founder & MD",
+    "email": "aneesh@capillarytech.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/aneesh-reddy-38b176b"
+   },
+   "role": {
+    "title": "Lead Application Security",
+    "url": "https://www.linkedin.com/jobs/view/4493764862/",
+    "posted_at": "2026-11-23T11:12:00+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Cashfree",
+    "domain": "cashfree.com",
+    "city": "Bengaluru",
+    "industry": "financial services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Akash Sinha",
+    "title": "Co-founder and CEO",
+    "email": "akash@cashfree.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/sinhaakash"
+   },
+   "role": {
+    "title": "Senior Manager - Internal Audit",
+    "url": "https://careers.kula.ai/cashfree/51906-senior-manager-associate-director-internal-audit?jobs=true",
+    "posted_at": "2026-11-23T20:42:25+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "SwitchOn Inc.",
+    "domain": "switchon.io",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Aniruddha Banerjee",
+    "title": "Co-Founder",
+    "email": "aniruddha@switchon.io",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/anirudhabanerjee"
+   },
+   "role": {
+    "title": "QA Engineer Lead",
+    "url": "https://joinswitchon.zohorecruit.in/jobs/Careers/210185000001203259/QA-Engineer-Lead?source=CareerSite",
+    "posted_at": "2026-11-11T23:00:00+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Ather Energy",
+    "domain": "atherenergy.com",
+    "city": "Bengaluru",
+    "industry": "automotive"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Tarun Mehta",
+    "title": "Co-founder",
+    "email": "tarun@atherenergy.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/tarunsmehta"
+   },
+   "role": {
+    "title": "Program Manager (Charging Infrastructure, Development)",
+    "url": "https://careers.atherenergy.com/job/a6ac4d459b4a35",
+    "posted_at": "2026-11-24T16:59:18+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Myntra",
+    "domain": "myntra.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Mayank Karnani",
+    "title": "CEO's Office & Strategy",
+    "email": "mayank.karnani@myntra.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/mayankkarnani"
+   },
+   "role": {
+    "title": "Lead Associate - Business Finance",
+    "url": "https://www.linkedin.com/jobs/view/4494098915/",
+    "posted_at": "2026-11-24T04:08:58+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Traya",
+    "domain": "traya.health",
+    "city": "Mumbai",
+    "industry": "health, wellness & fitness"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Saloni Anand",
+    "title": "Co-Founder",
+    "email": "saloni@traya.health",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/salonianand"
+   },
+   "role": {
+    "title": "Operations Executive - Order Processing",
+    "url": "https://www.linkedin.com/jobs/view/4490448125/",
+    "posted_at": "2026-11-17T10:32:30+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "CoffeeBeans",
+    "domain": "coffeebeans.io",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Madhu Lakshmanan",
+    "title": "Founder Director",
+    "email": "madhu@coffeebeans.io",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/madhu-lakshmanan-12b5ba4"
+   },
+   "role": {
+    "title": "Lead Data Engineer",
+    "url": "https://www.linkedin.com/jobs/view/4492400387/",
+    "posted_at": "2026-11-19T06:17:39+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Simple Energy",
+    "domain": "simpleenergy.in",
+    "city": "Bengaluru",
+    "industry": "automotive"
+   },
+   "segment": "growth",
+   "contact": {
+    "full_name": "Suhas Rajkumar",
+    "title": "Founder and CEO",
+    "email": "suhasrajkumar@simpleenergy.in",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/suhas-rajkumar-277824150"
+   },
+   "role": {
+    "title": "Social Media Manager",
+    "url": "https://www.linkedin.com/jobs/view/4492130888/",
+    "posted_at": "2026-11-19T10:15:36+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Convin",
+    "domain": "convin.ai",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "design",
+   "contact": {
+    "full_name": "Bharat Patidar",
+    "title": "Co-Founder",
+    "email": "bharat@convin.ai",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/bharatpatidar"
+   },
+   "role": {
+    "title": "Customer Success Manager",
+    "url": "https://www.linkedin.com/jobs/view/4491417700/",
+    "posted_at": "2026-11-17T19:01:33+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Blackcoffer",
+    "domain": "blackcoffer.com",
+    "city": "New Delhi",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Ajay Bidyarthy",
+    "title": "Founder & CEO",
+    "email": "ajay@blackcoffer.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/asbidyarthy"
+   },
+   "role": {
+    "title": "Quality Assurance Engineer",
+    "url": "https://www.linkedin.com/jobs/view/4490665079/",
+    "posted_at": "2026-11-17T07:19:26+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Zetheta Algorithms Private Limited",
+    "domain": "zetheta.com",
+    "city": "Mumbai",
+    "industry": "information technology & services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Suketu Sanghvi",
+    "title": "Founder",
+    "email": "suketu@zetheta.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/suketusanghvi-co-founder"
+   },
+   "role": {
+    "title": "Accountant",
+    "url": "https://www.linkedin.com/jobs/view/4492887336/",
+    "posted_at": "2026-11-21T06:43:04+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "EAZY",
+    "domain": "eazy.ai",
+    "city": "Gurugram",
+    "industry": "information technology & services"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Megha Singhal",
+    "title": "Co-Founder",
+    "email": "megha@eazy.ai",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/eazyerp"
+   },
+   "role": {
+    "title": "Business Development Manager - Ahmedabad",
+    "url": "https://www.linkedin.com/jobs/view/4494332114/",
+    "posted_at": "2026-11-24T09:03:43+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Sarvam",
+    "domain": "sarvam.ai",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "growth",
+   "contact": {
+    "full_name": "Pratyush Kumar",
+    "title": "Co-Founder",
+    "email": "pratyush@sarvam.ai",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/pratyush-kumar-8844a8a3"
+   },
+   "role": {
+    "title": "Field Marketing Manager",
+    "url": "https://jobs.ashbyhq.com/sarvam/dcd78674-dec4-4cd6-b0ba-fba2b835d06a",
+    "posted_at": "2026-11-03T06:44:34.109+00:00",
+    "on_employer_board": true
+   }
+  },
+  {
+   "company": {
+    "name": "LeadSquared",
+    "domain": "leadsquared.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Gayathri Subramanian",
+    "title": "Vice President and Head of HR",
+    "email": "gayathri.subramanian@leadsquared.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/gayathri-subramanian-5055923"
+   },
+   "role": {
+    "title": "Assistant Vice President - Marketing",
+    "url": "https://leadsquaredhrms.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6affea78c0718",
+    "posted_at": "2026-11-23T17:44:27+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Fictiv",
+    "domain": "fictiv.com",
+    "city": "San Francisco",
+    "industry": "medical devices"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Prasanna Edara",
+    "title": "Head of Operations_GCC",
+    "email": "prasanna.edara@fictiv.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/prasannaedara"
+   },
+   "role": {
+    "title": "Strategic Program Manager",
+    "url": "https://job-boards.greenhouse.io/fictiv/jobs/8956176002",
+    "posted_at": "2026-11-25T20:29:36+00:00",
+    "on_employer_board": true
+   }
+  },
+  {
+   "company": {
+    "name": "SmartQ",
+    "domain": "thesmartq.com",
+    "city": "Bengaluru",
+    "industry": "hospitality"
+   },
+   "segment": "design",
+   "contact": {
+    "full_name": "Hardhik Sheth",
+    "title": "Co-founder & CEO",
+    "email": "hardhik@thesmartq.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/hardhik-sheth-b3045b22"
+   },
+   "role": {
+    "title": "Associate Relationship Manager",
+    "url": "https://www.linkedin.com/jobs/view/4493767331/",
+    "posted_at": "2026-11-23T10:47:50+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Ctruh",
+    "domain": "ctruh.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Adarsh G",
+    "title": "Founderâ€™s Office",
+    "email": "adarsh.g@ctruh.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/adarshg22"
+   },
+   "role": {
+    "title": "EA to CEO",
+    "url": "https://www.linkedin.com/jobs/view/4489856149/",
+    "posted_at": "2026-11-13T23:52:24+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Fynd",
+    "domain": "fynd.com",
+    "city": "Mumbai",
+    "industry": "information technology & services"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Farooq Adam",
+    "title": "Founder",
+    "email": "farooq@fynd.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/farooqadam"
+   },
+   "role": {
+    "title": "Business Development Executive | Retail Tech",
+    "url": "https://hiring.fynd.com/careers/gofynd/jobs/LSMV0P1Lb5CPTLVa2AEZFA",
+    "posted_at": "2026-11-21T19:31:04+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "NowFloats",
+    "domain": "nowfloats.com",
+    "city": "Hyderabad",
+    "industry": "information technology & services"
+   },
+   "segment": "design",
+   "contact": {
+    "full_name": "Nitin Jain",
+    "title": "Co-Founder",
+    "email": "nitin@nowfloats.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/nitinjain1"
+   },
+   "role": {
+    "title": "Senior AI & Backend Engineer (From Tier 1 College)",
+    "url": "https://www.linkedin.com/jobs/view/4494119645/",
+    "posted_at": "2026-11-24T11:11:33+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Gamlaa",
+    "domain": "gamlaa.com",
+    "city": "Hyderabad",
+    "industry": "facilities services"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Shri Sakhare",
+    "title": "Founder & CEO",
+    "email": "shri@gamlaa.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/shrisakhare"
+   },
+   "role": {
+    "title": "Jr Executive - Horticulture",
+    "url": "https://gamlaa.keka.com/careers/jobdetails/171045",
+    "posted_at": "2026-11-21T05:16:56+00:00",
+    "on_employer_board": true
+   }
+  },
+  {
+   "company": {
+    "name": "NIIT Limited",
+    "domain": "niit.com",
+    "city": "Gurugram",
+    "industry": "education management"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Shobhita Sood",
+    "title": "Head of HR Center of Excellence",
+    "email": "shobhita.sood@niit.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/shobhitasood"
+   },
+   "role": {
+    "title": "Account Specialist",
+    "url": "https://www.linkedin.com/jobs/view/4493617321/",
+    "posted_at": "2026-11-23T06:30:44+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Ample",
+    "domain": "ample.co.in",
+    "city": "Bengaluru",
+    "industry": "executive office"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Rajesh Narang",
+    "title": "Founder and CEO",
+    "email": "rajesh.narang@ample.co.in",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/narangrajesh"
+   },
+   "role": {
+    "title": "Enterprise Sales Manager",
+    "url": "https://www.linkedin.com/jobs/view/4492579083/",
+    "posted_at": "2026-11-20T10:15:53+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Jupiter",
+    "domain": "jupiter.money",
+    "city": "Mumbai",
+    "industry": "banking"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Rohit Pandey",
+    "title": "President & COO | Office of the Customer | #NothingToHide",
+    "email": "rohit.pandey@jupiter.money",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/rkpande"
+   },
+   "role": {
+    "title": "Fraud Analyst",
+    "url": "https://jupiter.keka.com/careers/jobdetails/147913",
+    "posted_at": "2026-11-22T05:24:02+00:00",
+    "on_employer_board": true
+   }
+  },
+  {
+   "company": {
+    "name": "Rapido",
+    "domain": "rapido.bike",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Rishikesh",
+    "title": "Co Founder",
+    "email": "rishikesh@rapido.bike",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/rishikeshsr"
+   },
+   "role": {
+    "title": "Information Security Manager",
+    "url": "https://www.linkedin.com/jobs/view/4491800727/",
+    "posted_at": "2026-11-18T05:30:27+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Even",
+    "domain": "even.in",
+    "city": null,
+    "industry": "health, wellness & fitness"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Mayank Banerjee",
+    "title": "Co-Founder",
+    "email": "mayank@even.in",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/mayank-banerjee-b081507b"
+   },
+   "role": {
+    "title": "General Duty Assistant",
+    "url": "https://www.linkedin.com/jobs/view/4494329229/",
+    "posted_at": "2026-11-24T08:56:35+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "QpiAI",
+    "domain": "qpiai.tech",
+    "city": "Bengaluru",
+    "industry": "computer hardware"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Nagendra Nagaraja",
+    "title": "Founder,CEO and Chairman",
+    "email": "nagendra.nagaraja@qpiai.tech",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/nagendranagaraja"
+   },
+   "role": {
+    "title": "Chemical Engineer (Wet Etch)",
+    "url": "https://www.linkedin.com/jobs/view/4494336339/",
+    "posted_at": "2026-11-24T09:55:47+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Scripbox",
+    "domain": "scripbox.com",
+    "city": "Bengaluru",
+    "industry": "financial services"
+   },
+   "segment": "bfsi",
+   "contact": {
+    "full_name": "Atul Shinghal",
+    "title": "Founder and CEO",
+    "email": "atul.shinghal@scripbox.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/atulshinghal"
+   },
+   "role": {
+    "title": "Deputy Compliance Officer",
+    "url": "https://scripbox.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6b000d2175f86?from=all",
+    "posted_at": "2026-11-19T23:00:00+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "Rupeek",
+    "domain": "rupeek.com",
+    "city": "Bengaluru",
+    "industry": "financial services"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Sumit Maniyar",
+    "title": "Founder CEO",
+    "email": "sumit@rupeek.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/sumitmaniyar"
+   },
+   "role": {
+    "title": "DevOps Engineer L3",
+    "url": "https://www.linkedin.com/jobs/view/4491524958/",
+    "posted_at": "2026-11-16T23:00:33+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "IDfy",
+    "domain": "idfy.com",
+    "city": "Mumbai",
+    "industry": "information technology & services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Vineet Jawa",
+    "title": "Co Founder and Director",
+    "email": "vineet@idfy.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/vineetjawa"
+   },
+   "role": {
+    "title": "Associate Director - Finance & Accounts",
+    "url": "https://www.linkedin.com/jobs/view/4494108587/",
+    "posted_at": "2026-11-24T10:03:27+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "super.money",
+    "domain": "super.money",
+    "city": "Bengaluru",
+    "industry": "financial services"
+   },
+   "segment": "growth",
+   "contact": {
+    "full_name": "Prakash Sikaria",
+    "title": "Founder",
+    "email": "prakash.s@super.money",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/prakashsikaria"
+   },
+   "role": {
+    "title": "Recruitment Coordinator",
+    "url": "https://www.linkedin.com/jobs/view/4491498729/",
+    "posted_at": "2026-11-18T06:14:22+00:00",
+    "on_employer_board": false
+   }
+  },
+  {
+   "company": {
+    "name": "FatakPay",
+    "domain": "fatakpay.com",
+    "city": "Mumbai",
+    "industry": "financial services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Amit Lodha",
+    "title": "Co Founder & Group CEO",
+    "email": "amit.lodha@fatakpay.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/aklod"
+   },
+   "role": {
+    "title": "Head of Internal Audit",
+    "url": "https://www.linkedin.com/jobs/view/4492600397/",
+    "posted_at": "2026-11-23T10:15:02+00:00",
+    "on_employer_board": false
+   }
+  }
+ ],
+ "contacts_without_role": [
+  {
+   "company": {
+    "name": "Masai",
+    "domain": "masaischool.com",
+    "city": "Bengaluru",
+    "industry": "higher education"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Aman Vats",
+    "title": "Co-Founder",
+    "email": "aman.vats@masaischool.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/vatsaman"
+   }
+  },
+  {
+   "company": {
+    "name": "Masai",
+    "domain": "masaischool.com",
+    "city": "Bengaluru",
+    "industry": "higher education"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Nrupul Dev",
+    "title": "CTO",
+    "email": "nrupul@masaischool.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/nrupuld"
+   }
+  },
+  {
+   "company": {
+    "name": "SwitchOn Inc.",
+    "domain": "switchon.io",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Avra Banerjee",
+    "title": "Co-Founder",
+    "email": "avra@switchon.io",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/avra-banerjee-17840679"
+   }
+  },
+  {
+   "company": {
+    "name": "CoffeeBeans",
+    "domain": "coffeebeans.io",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Naveen Kunapareddy",
+    "title": "Co-Founder",
+    "email": "naveen@coffeebeans.io",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/naveenkunapareddy"
+   }
+  },
+  {
+   "company": {
+    "name": "Capillary Technologies",
+    "domain": "capillarytech.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Sridhar Bollam",
+    "title": "Chief Customer Officer, North America & Co-Founder",
+    "email": "sridhar.bollam@capillarytech.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/sridhar-bollam-growth"
+   }
+  },
+  {
+   "company": {
+    "name": "Simple Energy",
+    "domain": "simpleenergy.in",
+    "city": "Bengaluru",
+    "industry": "automotive"
+   },
+   "segment": "growth",
+   "contact": {
+    "full_name": "Shreshth Mishra",
+    "title": "Co-founder",
+    "email": "shreshth@simpleenergy.in",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/shreshth03"
+   }
+  },
+  {
+   "company": {
+    "name": "Zetheta Algorithms Private Limited",
+    "domain": "zetheta.com",
+    "city": "Mumbai",
+    "industry": "information technology & services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Sagar Dubey",
+    "title": "Co-Founder",
+    "email": "sagar@zetheta.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/sagarzetheta"
+   }
+  },
+  {
+   "company": {
+    "name": "apna",
+    "domain": "app.link",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Kartik Narayan",
+    "title": "CEO - Apna.Co",
+    "email": "kartik.narayan@apna.co",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/kartik"
+   }
+  },
+  {
+   "company": {
+    "name": "Cashfree",
+    "domain": "cashfree.com",
+    "city": "Bengaluru",
+    "industry": "financial services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Rabi Agrawal",
+    "title": "Head of Talent Acquisition",
+    "email": "rabi.agrawal@cashfree.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/rabi-agrawal-71903320"
+   }
+  },
+  {
+   "company": {
+    "name": "HCA Healthcare - India",
+    "domain": "hcahealthcare.in",
+    "city": "Hyderabad",
+    "industry": "information technology & services"
+   },
+   "segment": "healthcare",
+   "contact": {
+    "full_name": "Kalyan Varanasi",
+    "title": "Senior Director - Hyderabad Center HR Head",
+    "email": "kalyan.varanasi@hcahealthcare.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/kalyan-varanasi-75a1b019"
+   }
+  },
+  {
+   "company": {
+    "name": "Convin",
+    "domain": "convin.ai",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "design",
+   "contact": {
+    "full_name": "Ashish Santhalia",
+    "title": "Co-founder & CEO",
+    "email": "ashish@convin.ai",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/ashishsanthalia"
+   }
+  },
+  {
+   "company": {
+    "name": "Kapiva",
+    "domain": "kapiva.in",
+    "city": "Bengaluru",
+    "industry": "health, wellness & fitness"
+   },
+   "segment": "growth",
+   "contact": {
+    "full_name": "Shantanu",
+    "title": "Co-Founder",
+    "email": "shantanu@kapiva.in",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/shantanu-b535a010"
+   }
+  },
+  {
+   "company": {
+    "name": "RentoMojo",
+    "domain": "rentomojo.com",
+    "city": "Bengaluru",
+    "industry": "online media"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Kishori Zunzarrao",
+    "title": "Talent Acquisition Manager",
+    "email": "kishori.zunzarrao@rentomojo.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/kishori-z-a0b4b4100"
+   }
+  },
+  {
+   "company": {
+    "name": "RentoMojo",
+    "domain": "rentomojo.com",
+    "city": "Bengaluru",
+    "industry": "online media"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Geetansh Bamania",
+    "title": "Founder",
+    "email": "geetansh@rentomojo.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/geetanshbamania"
+   }
+  },
+  {
+   "company": {
+    "name": "Atain",
+    "domain": "atain.com",
+    "city": "Gurugram",
+    "industry": "information technology & services"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Perry Van De Luitgaren",
+    "title": "CEO",
+    "email": "perry.luitgaren@igtsolutions.com",
+    "email_status": "verified",
+    "country": "Singapore",
+    "linkedin_url": "http://www.linkedin.com/in/perry-van-de-luitgaren"
+   }
+  },
+  {
+   "company": {
+    "name": "Atain",
+    "domain": "atain.com",
+    "city": "Gurugram",
+    "industry": "information technology & services"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Geeta Mani",
+    "title": "Head of HR (SEA)",
+    "email": "geeta.mani@igtsolutions.com",
+    "email_status": "verified",
+    "country": "Malaysia",
+    "linkedin_url": "http://www.linkedin.com/in/geeta-mani-74919bb4"
+   }
+  },
+  {
+   "company": {
+    "name": "Peppermint Robotics",
+    "domain": "peppermintrobotics.com",
+    "city": "Pune",
+    "industry": "industrial automation"
+   },
+   "segment": "hardware_robotics",
+   "contact": {
+    "full_name": "Runal Dahiwade",
+    "title": "Founder & CEO",
+    "email": "runal@getpeppermint.co",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/runaldahiwade"
+   }
+  },
+  {
+   "company": {
+    "name": "Peppermint Robotics",
+    "domain": "peppermintrobotics.com",
+    "city": "Pune",
+    "industry": "industrial automation"
+   },
+   "segment": "hardware_robotics",
+   "contact": {
+    "full_name": "Miraj Vora",
+    "title": "Co-Founder & Business Head",
+    "email": "miraj@getpeppermint.co",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/miraj-c-vora-b909138"
+   }
+  },
+  {
+   "company": {
+    "name": "Nineleaps",
+    "domain": "nineleaps.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Divy Shrivastava",
+    "title": "Co-Founder",
+    "email": "divy@nineleaps.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/divy-shrivastava-01444b7"
+   }
+  },
+  {
+   "company": {
+    "name": "SmartQ",
+    "domain": "thesmartq.com",
+    "city": "Bengaluru",
+    "industry": "hospitality"
+   },
+   "segment": "design",
+   "contact": {
+    "full_name": "Abhishek Ashok",
+    "title": "Co Founder & CTO",
+    "email": "abhishek@thesmartq.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/abhishek-a-b5702683"
+   }
+  },
+  {
+   "company": {
+    "name": "Rupeek",
+    "domain": "rupeek.com",
+    "city": "Bengaluru",
+    "industry": "financial services"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Shivi Mittal",
+    "title": "CEOâ€™s Office",
+    "email": "shivi.mittal@rupeek.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/shivi-mittal-487ba3195"
+   }
+  },
+  {
+   "company": {
+    "name": "Fynd",
+    "domain": "fynd.com",
+    "city": "Mumbai",
+    "industry": "information technology & services"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Nagabhushan Ramappa",
+    "title": "Head of Operations & Digital Transformation | Retail",
+    "email": "nagabhushan@gofynd.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/nramappa"
+   }
+  },
+  {
+   "company": {
+    "name": "FatakPay",
+    "domain": "fatakpay.com",
+    "city": "Mumbai",
+    "industry": "financial services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Amit Goyal",
+    "title": "Co-Founder and Managing Director",
+    "email": "amit.goyal@fatakpay.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/amit-goyal-3a8b295"
+   }
+  },
+  {
+   "company": {
+    "name": "Healthify",
+    "domain": "healthifyme.com",
+    "city": "Bengaluru",
+    "industry": "health, wellness & fitness"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Rajnish Jaiswal",
+    "title": "Co-Founder",
+    "email": "jaiswalr@nychhc.org",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/rajnishinr"
+   }
+  },
+  {
+   "company": {
+    "name": "Jupiter",
+    "domain": "jupiter.money",
+    "city": "Mumbai",
+    "industry": "banking"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Jitendra Gupta",
+    "title": "Founder & CEO",
+    "email": "jiten@jupiter.money",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/guptajiten"
+   }
+  },
+  {
+   "company": {
+    "name": "CertifyOS",
+    "domain": "certifyos.com",
+    "city": "New York",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Anshul Rathi",
+    "title": "Founder and CEO",
+    "email": "anshul@certifyos.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/anshulrathi25"
+   }
+  },
+  {
+   "company": {
+    "name": "Kapture CX",
+    "domain": "kapture.cx",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Shubham Thadani",
+    "title": "Lead CFO",
+    "email": "shubham.thadani@kapture.cx",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/shubham-thadani-1473071b5"
+   }
+  },
+  {
+   "company": {
+    "name": "Kapture CX",
+    "domain": "kapture.cx",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Jagadeesan Kumar",
+    "title": "CFO and Head Corporate Development",
+    "email": "jk@kapture.cx",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/jagadeesan-kumar-5a259912b"
+   }
+  },
+  {
+   "company": {
+    "name": "LeadSquared",
+    "domain": "leadsquared.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Nilesh Patel",
+    "title": "Founder",
+    "email": "nilesh@leadsquared.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/nilesh-patel-067227"
+   }
+  },
+  {
+   "company": {
+    "name": "Fictiv",
+    "domain": "fictiv.com",
+    "city": "San Francisco",
+    "industry": "medical devices"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Jean Olivieri",
+    "title": "COO, Fictiv",
+    "email": "jean.olivieri@fictiv.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/jean-olivieri-7a6251242"
+   }
+  },
+  {
+   "company": {
+    "name": "Ctruh",
+    "domain": "ctruh.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Vinay Agastya",
+    "title": "Founder & CEO",
+    "email": "vinay@ctruh.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/vinayagastya"
+   }
+  },
+  {
+   "company": {
+    "name": "Greaves Electric Mobility",
+    "domain": "greaveselectricmobility.com",
+    "city": "Bengaluru",
+    "industry": "automotive"
+   },
+   "segment": "growth",
+   "contact": {
+    "full_name": "Pranesh Urs",
+    "title": "Head of Marketing",
+    "email": "pranesh.urs@greaveselectricmobility.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/praneshurs"
+   }
+  },
+  {
+   "company": {
+    "name": "NIIT Limited",
+    "domain": "niit.com",
+    "city": "Gurugram",
+    "industry": "education management"
+   },
+   "segment": "hr",
+   "contact": {
+    "full_name": "Babita Karki",
+    "title": "Chief Human Resources Officer - CHRO",
+    "email": "babita.karki@niitmts.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/babita-karki-bb02151"
+   }
+  },
+  {
+   "company": {
+    "name": "Ample",
+    "domain": "ample.co.in",
+    "city": "Bengaluru",
+    "industry": "executive office"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "David Leviseur",
+    "title": "Founder",
+    "email": "david.leviseur@fornax.energy",
+    "email_status": "verified",
+    "country": "United Kingdom",
+    "linkedin_url": "http://www.linkedin.com/in/david-leviseur-86a09045"
+   }
+  },
+  {
+   "company": {
+    "name": "greytHR",
+    "domain": "greythr.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Girish Rowjee",
+    "title": "CEO",
+    "email": "girish@greytip.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/girishrowjee"
+   }
+  },
+  {
+   "company": {
+    "name": "Even",
+    "domain": "even.in",
+    "city": null,
+    "industry": "health, wellness & fitness"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Matilde Giglio",
+    "title": "Co-Founder",
+    "email": "matilde@even.in",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/matilde-giglio-774961a8"
+   }
+  },
+  {
+   "company": {
+    "name": "Codilar Technologies",
+    "domain": "codilar.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "growth",
+   "contact": {
+    "full_name": "Mahaveer Devabalan",
+    "title": "Co-founder and Head of Commerce Solutions",
+    "email": "mahaveer@codilar.com",
+    "email_status": "verified",
+    "country": "United Arab Emirates",
+    "linkedin_url": "http://www.linkedin.com/in/mahaveerd"
+   }
+  },
+  {
+   "company": {
+    "name": "Codilar Technologies",
+    "domain": "codilar.com",
+    "city": "Bengaluru",
+    "industry": "information technology & services"
+   },
+   "segment": "growth",
+   "contact": {
+    "full_name": "Hashid Hameed",
+    "title": "Co-Founder & CEO",
+    "email": "hashid@codilar.com",
+    "email_status": "verified",
+    "country": "Oman",
+    "linkedin_url": "http://www.linkedin.com/in/hashid"
+   }
+  },
+  {
+   "company": {
+    "name": "Scimplify",
+    "domain": "scimplify.com",
+    "city": "Bengaluru",
+    "industry": "chemicals"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Hersh Manek",
+    "title": "Co-Founder",
+    "email": "hersh.m@scimplify.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/hersh-manek"
+   }
+  },
+  {
+   "company": {
+    "name": "Scimplify",
+    "domain": "scimplify.com",
+    "city": "Bengaluru",
+    "industry": "chemicals"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Dheeraj Dhingra",
+    "title": "Co-Founder",
+    "email": "dheeraj@scimplify.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/dheerajdhingra31"
+   }
+  },
+  {
+   "company": {
+    "name": "Reserve Bank Innovation Hub (RBIH)",
+    "domain": "rbihub.in",
+    "city": "Bengaluru",
+    "industry": "financial services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Rajat Mittal",
+    "title": "Senior Manager - CEO Office",
+    "email": "rajatmittal@rbihub.in",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/rajazz"
+   }
+  },
+  {
+   "company": {
+    "name": "Reserve Bank Innovation Hub (RBIH)",
+    "domain": "rbihub.in",
+    "city": "Bengaluru",
+    "industry": "financial services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Rhea Sinha",
+    "title": "Senior Associate, CEO's Office",
+    "email": "rheasinha@rbihub.in",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/rhea-sinha-223716178"
+   }
+  },
+  {
+   "company": {
+    "name": "IDfy",
+    "domain": "idfy.com",
+    "city": "Mumbai",
+    "industry": "information technology & services"
+   },
+   "segment": "finance",
+   "contact": {
+    "full_name": "Bhakti Dharod",
+    "title": "Head of HR",
+    "email": "bhakti.dharod@idfy.com",
+    "email_status": "verified",
+    "country": "India",
+    "linkedin_url": "http://www.linkedin.com/in/bhakti-dharod"
+   }
+  },
+  {
+   "company": {
+    "name": "Zinnov",
+    "domain": "consulting.zinnov.com",
+    "city": "The Woodlands",
+    "industry": "management consulting"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Grant Lammey",
+    "title": "Consultant, CEO Office",
+    "email": "grant.lammey@zinnov.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/grantlammey"
+   }
+  },
+  {
+   "company": {
+    "name": "Zinnov",
+    "domain": "consulting.zinnov.com",
+    "city": "The Woodlands",
+    "industry": "management consulting"
+   },
+   "segment": "operations",
+   "contact": {
+    "full_name": "Pari Natarajan",
+    "title": "CEO",
+    "email": "pari@zinnov.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/parinatarajanzinnov"
+   }
+  },
+  {
+   "company": {
+    "name": "Athena Infonomics",
+    "domain": "athenainfonomics.com",
+    "city": "Rockville",
+    "industry": "research"
+   },
+   "segment": "tech_ai_data",
+   "contact": {
+    "full_name": "Vijay Bhalaki",
+    "title": "Co-founder & Partner",
+    "email": "vijay.b@athenainfonomics.com",
+    "email_status": "verified",
+    "country": "United States",
+    "linkedin_url": "http://www.linkedin.com/in/vijay-bhalaki"
+   }
+  }
+ ]
+}

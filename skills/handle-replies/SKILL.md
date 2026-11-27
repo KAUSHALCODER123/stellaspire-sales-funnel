@@ -60,7 +60,7 @@ Do not edit any CSV. Create and send (or, in `dry_run`, only report) an email fr
 Draft in the same thread, plain text, under 40 words, no call ask, no meeting ask, no numbers, no links. Thank-free and short: say you will write to whoever owns hiring for the role, and ask for their name or address. Example shape: "Thanks for the pointer. Who handles hiring for the <role> role? A name or address is enough. Nikita". Run it through `check-email` only if you want the hints; it is not required. `send_mode`: `draft` creates a draft, `send` sends, `dry_run` reports only.
 
 ## Interested: suggested reply and alert
-Write a suggested reply to what they actually said: answer their question, offer the profiles or the next small step, no call ask unless they asked for one, plain voice as in `write-email`. Send this alert from the `.in` mailbox via the Gmail connector to `alert_email` in `${CLAUDE_PLUGIN_ROOT}/config/settings.json`, in every `send_mode` except `dry_run` (in `dry_run` only show it in the report):
+Write a suggested reply to what they actually said: answer their question, offer the profiles or the next small step, no call ask unless they asked for one, plain voice as in `write-email`. Send this alert from the `.in` mailbox via the Gmail connector to `alert_email` in `config/settings.json`, in every `send_mode` except `dry_run` (in `dry_run` only show it in the report):
 
 Alert once: never send an alert for a thread already labelled `SS/Alerted`, unless a new inbound message arrived after that alert was sent. After the alert email has sent successfully (not in `dry_run`) label the thread `SS/Alerted`. If the alert failed, do not label, so the next run tries again.
 

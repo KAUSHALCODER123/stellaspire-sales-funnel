@@ -4,18 +4,20 @@ description: "Show where the funnel stands: caps today, pause state, warm-up wee
 
 # Status
 
+> **Where this runs.** This file runs from the repository checkout, which is the current directory: scripts are `scripts/ss.py`, settings and lists are in `config/`. When a step says to run a skill or agent of this plugin, open its file in this repository (`skills/<name>/SKILL.md` or `agents/<name>.md`) and follow it. For an agent, start a subagent with that file's text as its instructions, on the model named in its header. Ignore any other installed copy of the stellaspire-outreach plugin: it may be out of date.
+
 Read-only. Write nothing, send nothing.
 
 1. Count from Gmail: `sent_today`, `drafted_today`, open `SS/Step-*` threads by step, replies waiting (threads with an inbound message and no `SS/Replied`), unsent drafts labelled `SS/Step-*`.
 2. Caps and calendar:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" today <<'JSON'
+python3 scripts/ss.py today <<'JSON'
 {"sent_today": 0, "drafted_today": 0, "followups_due": 0}
 JSON
 ```
 3. Health, with the 14-day counts from Gmail:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" health <<'JSON'
+python3 scripts/ss.py health <<'JSON'
 {"sent_14d": 0, "bounced_14d": 0, "complaints": 0}
 JSON
 ```

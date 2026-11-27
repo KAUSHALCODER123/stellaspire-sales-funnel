@@ -4,6 +4,8 @@ description: "Weekly funnel counts by role and by city from the SS labels, inclu
 
 # Weekly report
 
+> **Where this runs.** This file runs from the repository checkout, which is the current directory: scripts are `scripts/ss.py`, settings and lists are in `config/`. When a step says to run a skill or agent of this plugin, open its file in this repository (`skills/<name>/SKILL.md` or `agents/<name>.md`) and follow it. For an agent, start a subagent with that file's text as its instructions, on the model named in its header. Ignore any other installed copy of the stellaspire-outreach plugin: it may be out of date.
+
 Read-only on Gmail except for sending the report. Write no files.
 
 1. From Gmail threads in the `.in` mailbox, count over the last 7 days and all-time:

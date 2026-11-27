@@ -5,6 +5,8 @@ argument-hint: <email-or-domain>
 
 # Do not contact
 
+> **Where this runs.** This file runs from the repository checkout, which is the current directory: scripts are `scripts/ss.py`, settings and lists are in `config/`. When a step says to run a skill or agent of this plugin, open its file in this repository (`skills/<name>/SKILL.md` or `agents/<name>.md`) and follow it. For an agent, start a subagent with that file's text as its instructions, on the model named in its header. Ignore any other installed copy of the stellaspire-outreach plugin: it may be out of date.
+
 Argument: `$ARGUMENTS`, one email address or one domain. If empty or not one value, ask for it and stop.
 
 The plugin directory is read-only, so do not edit any CSV. The list lives in Gmail.

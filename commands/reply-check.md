@@ -4,6 +4,8 @@ description: "Replies only. Classify new replies, label them, stop sequences, al
 
 # Reply check
 
+> **Where this runs.** This file runs from the repository checkout, which is the current directory: scripts are `scripts/ss.py`, settings and lists are in `config/`. When a step says to run a skill or agent of this plugin, open its file in this repository (`skills/<name>/SKILL.md` or `agents/<name>.md`) and follow it. For an agent, start a subagent with that file's text as its instructions, on the model named in its header. Ignore any other installed copy of the stellaspire-outreach plugin: it may be out of date.
+
 Handle replies only. Write no new outreach and no follow-ups.
 
 Hard rules: if a script says no, do not do it; never edit config or settings (only read the `SS Settings` note); never create, change or activate a campaign (only read `SS Campaign` notes); on any connector failure stop and report; the plugin directory is read-only, write no files.
@@ -12,7 +14,7 @@ Hard rules: if a script says no, do not do it; never edit config or settings (on
 0b. Settings overrides, before any other script call. Search the `.in` mailbox for the newest note with subject `SS Settings` (label `SS/Settings`, body is JSON of overrides only) and run `ss.py load-settings` with `{"overrides": <that JSON>}` (use `{"overrides": {}}` when there is no note, which also clears an old override left on this machine). If the body is not valid JSON or the script exits non-zero, ignore the note, run it again with `{"overrides": {}}`, use the plugin defaults, and list the note under Needs Nikita with the problems. Only READ this note: never create, change or delete it.
 1. Health first:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" health <<'JSON'
+python3 scripts/ss.py health <<'JSON'
 {"sent_14d": 0, "bounced_14d": 0, "complaints": 0}
 JSON
 ```

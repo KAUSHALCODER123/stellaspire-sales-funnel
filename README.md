@@ -19,11 +19,11 @@ Every hard rule (limits, who may be emailed, how old a role may be, what the ema
 1. **Domain and mailbox.** Buy the `.in` domain. Set up Google Workspace with one sending mailbox on it. Add the DNS records Google gives you: SPF, DKIM and DMARC. Never send from the `.com` domain.
 2. **Warm up the mailbox** with normal mail for a week before the plugin sends anything.
 3. **Connect the apps** in claude.ai (Settings, Connectors): Gmail, signed in as the `.in` mailbox. Optional but recommended: Firecrawl, which makes the research agents better at reading careers pages and job boards. It uses Firecrawl credits. Claude Docs is needed for the LinkedIn notes doc. In each scheduled task's Connectors tab, keep only Gmail, Claude Docs and Firecrawl. Hiresome and Apollo are not connectors; they use the keys in step 6.
-4. **Add the plugin** to the Claude account at claude.ai/customize/plugins, pointing at this repository. Plugins added at account level load in scheduled cloud runs.
+4. **Plugin upload (optional).** The scheduled tasks and the Code-section commands read everything from this GitHub repository, so a push is live on the next run. Uploading the zip as an account plugin is only needed if you want the namespaced `/stellaspire-outreach:...` commands, and Claude may keep serving an older uploaded copy; the repository copy always wins.
 5. **Settings.** In `config/settings.json` set `warmup_start_date` (the first day the plugin may send), the sender details and `alert_email` (where reports and alerts go), and leave `send_mode` as `draft`. After that, you change `paused`, `send_mode`, `alert_email`, `linkedin_doc_url`, `mailbox_daily_cap`, `target_cities`, `exclude_domains`, `when_no_campaign` and `max_companies_researched_per_run` by chatting (see Settings below), never by editing files. The scheduled runs never change settings.
 6. **Create two scheduled tasks** in Claude (check in the routine settings for the current screens and names):
-   - Daily run: command `/stellaspire-outreach:daily-run`, schedule `CRON_TZ=Asia/Kolkata 7 7 * * 1-5` (07:07 IST, Monday to Friday).
-   - Reply check: command `/stellaspire-outreach:reply-check`, schedule `CRON_TZ=Asia/Kolkata 7 13,17 * * 1-5` (13:07 and 17:07 IST).
+   - Daily run: instructions `Read commands/daily-run.md in this repository and follow it exactly.`, schedule `CRON_TZ=Asia/Kolkata 7 7 * * 1-5` (07:07 IST, Monday to Friday).
+   - Reply check: instructions `Read commands/reply-check.md in this repository and follow it exactly.`, schedule `CRON_TZ=Asia/Kolkata 7 13,17 * * 1-5` (13:07 and 17:07 IST).
    Minute 7 is deliberate: runs set for exactly the top of the hour start late.
    For both tasks:
    - Network: full network access (the research needs the open web).

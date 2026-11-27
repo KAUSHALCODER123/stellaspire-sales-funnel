@@ -14,7 +14,7 @@ At the start of the run (once, not per email), search Gmail for the newest messa
 ## Loop
 1. Facts. Build them once per contact:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" facts <<'JSON'
+python3 scripts/ss.py facts <<'JSON'
 {"contact": {"full_name": "Asha Rao", "title": "Head of Talent"},
  "company": {"name": "Acme", "industry": "fintech", "city": "Pune"},
  "role": "Backend Engineer", "posted_at": "2026-11-10T00:00:00+05:30",
@@ -25,7 +25,7 @@ JSON
 2. Write the email (rules below). Plain text.
 3. Check:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" check-email <<'JSON'
+python3 scripts/ss.py check-email <<'JSON'
 {"step": 1, "subject": "SDR seat empty since April", "body": "Hi Asha,\n...\nNikita", "facts": { ... }, "previous": []}
 JSON
 ```
@@ -33,12 +33,12 @@ JSON
 4. If `ok` is false, rewrite using `hints` and `problems`, and check again. Maximum 3 tries in total. After the third failure skip this contact and log it ("Skipped: email failed check, step N, <problems>"). Do not send or draft anything for them.
 5. Compose the final text:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" compose <<'JSON'
+python3 scripts/ss.py compose <<'JSON'
 {"step": 1, "subject": "SDR seat empty since April", "body": "<your checked text>", "facts": { ... }}
 JSON
 ```
 Compose inserts the proof sentence (step 1), the signature and the opt-out line, re-checks, and returns `body` (plain text), `body_html` (the same email as HTML, with Stellaspire's signature: title under the name, logo, phone, website and LinkedIn links) and `subject` (step 1). If it returns `error`, treat it like a failed check and count it as a try. Use its output text exactly; change nothing.
-6. Deliver, by the effective `send_mode` (`${CLAUDE_PLUGIN_ROOT}/config/settings.json` plus this run's `load-settings` overrides):
+6. Deliver, by the effective `send_mode` (`config/settings.json` plus this run's `load-settings` overrides):
    - `dry_run`: write nothing to Gmail. Put the final text in the report.
    - `draft`: create a Gmail draft with the Gmail connector.
    - `send`: send with the Gmail connector.

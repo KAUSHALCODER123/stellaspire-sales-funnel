@@ -15,7 +15,7 @@ Reject a brief that has no `pages_opened`, or whose `signals` lack a date or `so
 
 ## 2. Score with the script
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" fit <<'JSON'
+python3 scripts/ss.py fit <<'JSON'
 {"brief": { ...brief exactly as the qualifier returned it, after removing failed signals... },
  "family": "tech_ai_data", "roles": 3, "signals": 2}
 JSON

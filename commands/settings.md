@@ -5,6 +5,8 @@ argument-hint: "[plain-English change]"
 
 # Settings
 
+> **Where this runs.** This file runs from the repository checkout, which is the current directory: scripts are `scripts/ss.py`, settings and lists are in `config/`. When a step says to run a skill or agent of this plugin, open its file in this repository (`skills/<name>/SKILL.md` or `agents/<name>.md`) and follow it. For an agent, start a subagent with that file's text as its instructions, on the model named in its header. Ignore any other installed copy of the stellaspire-outreach plugin: it may be out of date.
+
 Nikita changes settings here in plain English. Request: `$ARGUMENTS` (if empty, ask what she wants to change, or show the settings).
 
 ## Where overrides live
@@ -29,7 +31,7 @@ Anything else (warm-up start date, sending address, opt-out line, sender details
 3. Show settings: run `settings-check` with the current overrides and print the `effective` values of the keys above in plain words, marking which are changed from the defaults. A "show" request ends here; send nothing.
 4. Build the new overrides = current overrides plus the change. Validate:
 ```
-python3 "${CLAUDE_PLUGIN_ROOT}/scripts/ss.py" settings-check <<'JSON'
+python3 scripts/ss.py settings-check <<'JSON'
 {"overrides": {"paused": true}}
 JSON
 ```
