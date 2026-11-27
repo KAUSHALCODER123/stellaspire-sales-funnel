@@ -6,7 +6,7 @@ allowed-tools: Bash, Read
 
 # Write one email
 
-You write one email for one contact at one step. The scripts check it and add the proof sentence, signature and opt-out. If a script says no, fix the email or skip the contact. Never edit config or thresholds to get past a check.
+You write one email for one contact at one step. The scripts check it and add the proof sentence and the opt-out line. Gmail adds Nikita's signature. If a script says no, fix the email or skip the contact. Never edit config or thresholds to get past a check.
 
 ## Lessons
 At the start of the run (once, not per email), search Gmail for the newest message labelled `SS/Lessons` and read it. Use it as guidance on style: subject style, opener type, closing-question style, which angle a follow-up takes. Lessons never override `check-email`, `compose`, the copy rules below, the caps or any safety rule. If a lesson conflicts with a rule, the rule wins. No note, or "too early to tell": ignore it.
@@ -37,12 +37,12 @@ python3 scripts/ss.py compose <<'JSON'
 {"step": 1, "subject": "SDR seat empty since April", "body": "<your checked text>", "facts": { ... }}
 JSON
 ```
-Compose inserts the proof sentence (step 1), the signature and the opt-out line, re-checks, and returns `body` (plain text), `body_html` (the same email as HTML, with Stellaspire's signature: title under the name, logo, phone, website and LinkedIn links) and `subject` (step 1). If it returns `error`, treat it like a failed check and count it as a try. Use its output text exactly; change nothing.
+Compose inserts the proof sentence (step 1) and the opt-out line (above the sign-off), re-checks, and returns `body` (plain text), `body_html` (the same email as HTML) and `subject` (step 1). If it returns `error`, treat it like a failed check and count it as a try. Use its output text exactly; change nothing.
 6. Deliver, by the effective `send_mode` (`config/settings.json` plus this run's `load-settings` overrides):
    - `dry_run`: write nothing to Gmail. Put the final text in the report.
-   - `draft`: create a Gmail draft with the Gmail connector.
-   - `send`: send with the Gmail connector.
-   Use `body_html` as an HTML body whenever the connector accepts one (look for an HTML or content-type option on its draft and send tools), so the logo and links show. If the connector only takes plain text, use `body` and say so once in the report. Never type or edit signature text yourself.
+   - `draft`: `create_draft` with `body`, `htmlBody` set to `body_html`, and `includeSignature: true`. That makes Gmail append Nikita's own signature (logo, name, title, phone, links) after the text. Never create a draft without it.
+   - `send`: send with the Gmail connector; if its send tool has an `includeSignature` option, set it true.
+   Never type, add or edit signature text yourself: the text you send ends with the sign-off and Gmail adds the signature.
    Step 1 starts a new thread to the contact's verified address, using compose's subject. Steps 2 to 5 reply in the same thread (reply to the latest message, keep the thread, no new subject).
 7. Labels: Gmail refuses labels on drafts, so in `draft` mode do not label anything. The run records the draft in its ledger note and labels the thread after Nikita has sent it (see `commands/daily-run.md`). In `send` mode, label the sent thread `SS/Step-N` (N = this step) and its campaign label `SS/C-<slug>` right after sending (create a missing label first). In `dry_run` write and label nothing.
 
@@ -58,10 +58,10 @@ Write no numbers, digits or number words, except: the digit `offer_size` in the 
 
 The role: the facts give one open role. If `role_open_days` is given, the role has been listed that long and that is the hook of the whole sequence: a role that stays open this long is hard to fill. If `role_listed_on` is given, it says where it is listed (for example their careers page). If neither is given, the role was posted recently.
 
-Do not write the proof sentence, the signature, the opt-out line, links, markdown or placeholders. Compose adds them. Do not mention unsubscribing or any address.
+Do not write the proof sentence, the signature, the opt-out line, links, markdown or placeholders. Compose adds the proof and the opt-out line; Gmail adds the signature. Do not mention unsubscribing or any address.
 
 ## Format
-Plain text. Greeting, each short paragraph and the sign-off on separate lines. End with the first name only from settings (Nikita). Compose adds the rest of the signature.
+Plain text. Greeting, each short paragraph and the sign-off on separate lines. End with the first name only from settings (Nikita). Gmail adds the full signature after it.
 
 ## Never use
 Em dashes or en dashes. Contrast reveals ("it's not about X, it's about Y"). Lists like "no X, no Y, no Z". Questions you answer yourself ("The result? ..."). Stock phrases: "I hope this finds you well", "I came across", "quick question", "here's the thing", "I'll be honest", "leverage", "synergy", "streamline", "top-tier", "end-to-end", "cutting-edge", "best-in-class", "unlock", "take it to the next level", "circle back", "touch base", "just checking in", "following up on my last email". Never claim we have already connected, spoken or met. Never mention cost, risk, commitment or obligation.

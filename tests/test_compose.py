@@ -7,22 +7,21 @@ from test_email_check import ASK, FACTS, FOLLOW, INTRO, SUBJECT, email1
 
 OPT_OUT = 'If this isn\'t relevant, reply "no" and I won\'t write again.'
 PROOF = "We recently filled 2 Data Engineer roles."
+TAIL = "\n\n" + OPT_OUT + "\n\nNikita"  # opt-out above the sign-off: Gmail's signature follows the sign-off
 
 
-def test_email_one_inserts_the_proof_between_intro_and_ask_and_ends_with_the_opt_out():
+def test_email_one_inserts_the_proof_between_intro_and_ask_and_puts_the_opt_out_above_the_sign_off():
     r = compose({"step": 1, "subject": SUBJECT, "body": email1(), "facts": {**FACTS, "placement_proof": PROOF}})
     assert r["subject"] == SUBJECT
-    assert r["body"].endswith(OPT_OUT)
     body = r["body"]
-    assert body.index(INTRO) < body.index(PROOF) < body.index(ASK)
+    assert body.index(INTRO) < body.index(PROOF) < body.index(ASK) < body.index(OPT_OUT)
     assert body.count(PROOF) == 1
-    assert body.endswith(
-        "Nikita\nFounder, Stellaspire\n+91 7024766117 | stellaspire.com | linkedin.com/company/stellaspire\n\n" + OPT_OUT)
+    assert body.endswith(TAIL)
 
 
 def test_email_one_without_proof_has_no_gap():
     r = compose({"step": 1, "subject": SUBJECT, "body": email1(), "facts": FACTS})
-    assert "\n\n\n" not in r["body"] and r["body"].endswith(OPT_OUT)
+    assert "\n\n\n" not in r["body"] and r["body"].endswith(TAIL)
 
 
 def test_proof_is_dropped_when_it_leaves_the_model_too_little_room():
@@ -31,9 +30,9 @@ def test_proof_is_dropped_when_it_leaves_the_model_too_little_room():
     assert long_proof not in r["body"] and "error" not in r
 
 
-def test_follow_up_gets_signature_and_no_subject():
+def test_follow_up_has_no_subject_and_the_same_opt_out_placement():
     r = compose({"step": 2, "body": FOLLOW, "facts": FACTS})
-    assert "subject" not in r and r["body"].startswith("Hi Asha,") and r["body"].endswith(OPT_OUT)
+    assert "subject" not in r and r["body"].startswith("Hi Asha,") and r["body"].endswith(TAIL)
 
 
 def test_failing_text_returns_an_error_with_hints_and_no_body():
@@ -45,32 +44,20 @@ def test_bad_subject_blocks_step_one():
     assert compose({"step": 1, "subject": "Applications Wanted", "body": email1(), "facts": FACTS})["error"]
 
 
-def test_composed_text_without_signature_passes_check_email():
+def test_composed_text_without_the_opt_out_passes_check_email():
     r = compose({"step": 1, "subject": SUBJECT, "body": email1(), "facts": {**FACTS, "placement_proof": PROOF}})
-    unsigned = r["body"].split("\nFounder, Stellaspire")[0]
-    assert check_email({"step": 1, "subject": SUBJECT, "body": unsigned, "facts": {**FACTS, "placement_proof": PROOF}})["ok"]
+    plain = r["body"].replace("\n\n" + OPT_OUT, "")
+    assert check_email({"step": 1, "subject": SUBJECT, "body": plain, "facts": {**FACTS, "placement_proof": PROOF}})["ok"]
     assert json.dumps(r)  # serialisable
 
 
-def _compose_one(step=2):
-    return compose({"step": step, "body": FOLLOW if step == 2 else INTRO, "facts": FACTS})
+def test_no_signature_block_is_added_because_gmail_appends_the_real_one():
+    out = compose({"step": 2, "body": FOLLOW, "facts": FACTS})
+    for text in (out["body"], out["body_html"]):
+        assert "Founder" not in text and "7024766117" not in text and "<img" not in text and "linkedin" not in text.lower()
 
 
-def test_html_body_has_the_live_signature_with_logo_links_and_title_under_the_name():
-    out = _compose_one()
-    page = out["body_html"]
-    assert "<br>Founder, Stellaspire<br><br>" in page                      # title sits directly under the sign-off name
-    assert '<img src="https://cdn.prod.website-files.com/' in page and 'height="56"' in page
-    assert '+91 7024766117 | <a href="https://stellaspire.com">stellaspire.com</a> | ' \
-           '<a href="https://www.linkedin.com/company/stellaspire/">LinkedIn</a>' in page
-    assert page.endswith("I won&#x27;t write again.</span>") or "write again.</span>" in page
-
-
-def test_html_body_escapes_the_email_text_and_keeps_line_breaks():
-    out = compose({"step": 2, "body": FOLLOW.replace("Nikita", "Nikita"), "facts": FACTS})
-    assert "<script" not in out["body_html"] and "\n" not in out["body_html"].split("<br>Founder")[0]
-    assert "<br><br>" in out["body_html"]
-
-
-def test_plain_body_shows_short_website_and_linkedin_labels():
-    assert "+91 7024766117 | stellaspire.com | linkedin.com/company/stellaspire" in _compose_one()["body"]
+def test_html_body_escapes_the_text_and_keeps_line_breaks():
+    html = compose({"step": 2, "body": FOLLOW, "facts": FACTS})["body_html"]
+    assert "<script" not in html and "\n" not in html and "<br><br>" in html
+    assert "I won't write again" in html
